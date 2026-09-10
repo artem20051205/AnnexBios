@@ -1,0 +1,27 @@
+Debriefing – AnnexBios Bilthoven
+Opdrachtgever: Annex Bios B.V. – product owner: ........................ – datum: ....................
+Hieronder staat in onze eigen woorden wat de klant van ons vraagt. Wij maken alleen de vestiging
+Bilthoven; het hoofdkantoor wordt door een ander team gemaakt.
+1. Aanvrager. Annex Bios B.V., een bioscoop uit Utrecht. Wij maken de website van hun vestiging in
+Bilthoven.
+2. Uitdaging. Bilthoven moet altijd de juiste films en tijden laten zien, en bezoekers moeten makkelijk een
+stoel kunnen reserveren.
+3. Achtergrond. Annex Bios heeft een bioscoop in Utrecht en acht kleinere vestigingen. Het hoofdkantoor
+haalt de films op uit TMDB. De vestigingen gebruiken die gegevens en houden hun eigen reserveringen bij.
+4. Aanleiding. Annex Bios koopt kleine bioscopen in de regio op. Daardoor moet de website ook
+veranderen.
+5. Doelstelling. Na drie weken staat de website van Bilthoven online. Je kunt zien welke films draaien en een
+stoel reserveren.
+6. Oplevering. De pagina’s home, filmagenda, filmdetail, bestelpagina en bevestiging. Reserveren met
+stoelen kiezen. Een beheerscherm voor de gegevens van de vestiging en de reserveringen. De documenten
+als pdf in de map /documents.
+7. Randvoorwaarden. HTML5 dat valideert en werkt op mobiel. Veilig werken: input controleren, prepared
+statements en htmlspecialchars(). Scrum met 3 sprints van een week. Git met feature-branches; Artem doet
+de merges. Aan het eind staat de site online.
+8. Effecten. Alle vestigingen laten dezelfde films zien en de gegevens staan maar op één plek.
+9. Gebruikers. De bezoeker, die snel wil reserveren en meestal zijn telefoon gebruikt. En de medewerker van
+Bilthoven, die de gegevens en de reserveringen beheert.
+10. Wensen. We volgen het ontwerp in Figma. Veiligheid is belangrijk voor de klant. Reserveringen wijzigen
+en verwijderen doen we in sprint 3.
+11. Andere projecten. Het hoofdkantoor maakt de API met de films en de tijden. In week 1 spreken we af
+hoe die API eruitziet. Tot die tijd gebruiken we zelfgemaakte testdata in JSON.
