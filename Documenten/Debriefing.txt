@@ -1,5 +1,5 @@
 Debriefing – AnnexBios Bilthoven
-Opdrachtgever: Annex Bios B.V. – product owner: ........................ – datum: ....................
+Opdrachtgever: Annex Bios B.V. – product owner
 Hieronder staat in onze eigen woorden wat de klant van ons vraagt. Wij maken alleen de vestiging
 Bilthoven; het hoofdkantoor wordt door een ander team gemaakt.
 1. Aanvrager. Annex Bios B.V., een bioscoop uit Utrecht. Wij maken de website van hun vestiging in

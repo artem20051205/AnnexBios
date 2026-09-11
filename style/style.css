@@ -1,0 +1,28 @@
+body {
+    background: #000 url('images/Background.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(20, 23, 25);
+    border-radius: 10px;
+    padding: 20px;
+    min-height: 120px;
+}
+
+.logo {
+    left: 20px;
+    top: 50%;
+}
+
+.header-text {
+    margin: 0;
+    color: white;
+    font-size: 20px;
+    font-family: Helvetica;
+    text-align: center;
+}
