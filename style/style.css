@@ -46,11 +46,17 @@ nav a::after {
     height: 3px;
     background-color: white;
     transition: width 0.3s ease;
+        background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.9),
+        rgba(0, 0, 0, 0)
+    );
 }
 
 /* Als je met je muis over de link gaat */
 nav a:hover::after {
     width: 100%;
+    
 }
 
 .dunepic {
