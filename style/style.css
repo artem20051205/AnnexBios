@@ -52,13 +52,17 @@ nav a::after {
 nav a:hover::after {
     width: 100%;
 }
+
 .dunepic {
     position: relative;
+    
+
 }
 img.dune {
     width: 87%;
     height: 575px;
     object-fit: cover;
+  
 }
 p{
     color: white;
