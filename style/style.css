@@ -52,3 +52,43 @@ nav a::after {
 nav a:hover::after {
     width: 100%;
 }
+.dunepic {
+    position: relative;
+}
+img.dune {
+    width: 87%;
+    height: 575px;
+    object-fit: cover;
+}
+p{
+    color: white;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 65px;
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    margin: 0;
+    text-shadow: 8px 8px 8px rgba(0, 0, 0, 0.7);
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+p1{
+    color: white;
+    font-family: bold, Helvetica, Arial, sans-serif;
+    font-size: 45px;
+    position: absolute;
+    top: 140px;
+    left: 100px;
+    margin: 0;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
+}
+button{
+    position: absolute;
+    top: 220px;
+    left: 100px;
+    padding: 15px 30px;
+    font-size: 30px;
+    background-color: #67294c;
+    color: white;
+    border-radius: 10px;
+
+}
