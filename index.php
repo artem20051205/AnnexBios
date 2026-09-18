@@ -20,5 +20,20 @@
         <a href="admin.html">Admin</a>
     </nav>
 </header>
+<div class="dunepic">
+<img src="style/images/dune.png" alt="Dune" width="1280x1024" class="dune">
+<p>Welkom bij AnnexBios Bilthoven</p>
+<p1>Ontdek de laatste films in comfort</p1>
+<button>Film Agenda Bekijken</button>
+
+<footer>
+    <p>© 2026 AnnexBios Bilthoven</p>
+
+    <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="filmagenda.html">Filmagenda</a>
+        <a href="bestellen.html">Bestellen</a>
+    </div>
+</footer>
 </body>
 </html>

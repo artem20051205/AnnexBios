@@ -46,9 +46,91 @@ nav a::after {
     height: 3px;
     background-color: white;
     transition: width 0.3s ease;
+        background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.9),
+        rgba(0, 0, 0, 0)
+    );
 }
 
 /* Als je met je muis over de link gaat */
 nav a:hover::after {
     width: 100%;
+    
+}
+
+.dunepic {
+    position: relative;
+    
+
+}
+img.dune {
+    width: 87%;
+    height: 575px;
+    object-fit: cover;
+  
+}
+p{
+    color: white;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 65px;
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    margin: 0;
+    text-shadow: 8px 8px 8px rgba(0, 0, 0, 0.7);
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+p1{
+    color: white;
+    font-family: bold, Helvetica, Arial, sans-serif;
+    font-size: 45px;
+    position: absolute;
+    top: 140px;
+    left: 100px;
+    margin: 0;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
+}
+button{
+    position: absolute;
+    top: 220px;
+    left: 100px;
+    padding: 15px 30px;
+    font-size: 30px;
+    background-color: #67294c;
+    color: white;
+    border-radius: 10px;
+
+}
+
+footer {
+    background-color: rgb(20, 23, 25);
+    color: white;
+    text-align: center;
+    padding: 30px;
+    margin-top: 30px;
+    font-family: Helvetica, Arial, sans-serif;
+    border-radius: 10px;
+}
+
+footer p {
+    position: static;
+    font-size: 16px;
+    margin: 5px;
+    text-shadow: none;
+}
+
+.footer-links {
+    margin-top: 15px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+}
+
+.footer-links a:hover {
+    color: #67294c;
 }
