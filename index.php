@@ -6,9 +6,7 @@ $stmt = $pdo->query("SELECT * FROM movies");
 
 $movies = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-foreach ($movies as $movie) {
-    echo $movie['title'] . '<br>';
-} ?>
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +30,7 @@ foreach ($movies as $movie) {
 
     <nav>
         <a href="index.html">Home</a>
-        <a href="filmagenda.html">Filmagenda</a>
+        <a href="films.php">Filmagenda</a>
         <a href="film-detail.html">Film detail</a>
         <a href="bestellen.html">Bestellen</a>
         <a href="admin.html">Admin</a>
@@ -42,7 +40,7 @@ foreach ($movies as $movie) {
 <img src="style/images/dune.png" alt="Dune" width="1280x1024" class="dune">
 <p>Welkom bij AnnexBios Bilthoven</p>
 <p1>Ontdek de laatste films in comfort</p1>
-<button>Film Agenda Bekijken</button>
+<button onclick="window.location.href='films.php'">Film Agenda Bekijken</button>
 
 
 <footer>
@@ -50,7 +48,7 @@ foreach ($movies as $movie) {
 
     <div class="footer-links">
         <a href="index.html">Home</a>
-        <a href="filmagenda.html">Filmagenda</a>
+        <a href="films.php">Filmagenda</a>
         <a href="bestellen.html">Bestellen</a>
     </div>
 </footer>
