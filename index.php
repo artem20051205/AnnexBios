@@ -29,7 +29,7 @@ $movies = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </a>
 
     <nav>
-        <a href="index.html">Home</a>
+        <a href="index.html">Home </a>
         <a href="films.php">Filmagenda</a>
         <a href="film-detail.html">Film detail</a>
         <a href="bestellen.html">Bestellen</a>
