@@ -74,7 +74,7 @@ $movies = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     
     <footer>
-        <p>© 2026 AnnexBios Bilthoven</p>
+        <p>© 2026 AnnexBios Bilthoven </p>
 
         <div class="footer-links">
             <a href="index.html">Home</a>
