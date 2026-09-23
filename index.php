@@ -1,5 +1,6 @@
 <?php
-
+include 'includes/header.php';
+include 'includes/footer.php';
 require_once 'db.php';
 
 $stmt = $pdo->query("SELECT * FROM movies ORDER BY movie_id");
@@ -19,19 +20,7 @@ $movies = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
  
-    <header>
-        <a href="index.html">
-            <img src="style/images/logo.png" alt="Logo" width="300" class="logo">
-        </a>
-
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="films.php">Filmagenda</a>
-            <a href="film-detail.html">Film detail</a>
-            <a href="bestellen.html">Bestellen</a>
-            <a href="admin.html">Admin</a>
-        </nav>
-    </header>
+    
     <div class="dunepic">
         <img src="style/images/dune.png" alt="Dune" width="1280x1024" class="dune">
     </div>
@@ -73,15 +62,6 @@ $movies = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
     
-    <footer>
-        <p>© 2026 AnnexBios Bilthoven </p>
-
-        <div class="footer-links">
-            <a href="index.html">Home</a>
-            <a href="films.php">Filmagenda</a>
-            <a href="bestellen.html">Bestellen</a>
-        </div>
-    </footer>
 
 </body>
 
