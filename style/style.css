@@ -54,9 +54,8 @@ nav a::after {
 }
 
 /* Als je met je muis over de link gaat */
-nav a:hover::after {
-    width: 100%;
-    
+nav a:hover {
+    color: #67294c;
 }
 
 .dunepic {

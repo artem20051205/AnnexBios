@@ -1,6 +1,5 @@
 <?php
 include 'includes/header.php';
-include 'includes/footer.php';
 require_once 'db.php';
 
 $stmt = $pdo->query("SELECT * FROM movies ORDER BY movie_id");
@@ -64,5 +63,7 @@ $movies = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
 
 </body>
-
+<?php
+include 'includes/footer.php';
+?>
 </html>
