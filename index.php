@@ -1,5 +1,4 @@
 <?php
-include 'includes/header.php';
 require_once 'db.php';
 
 $stmt = $pdo->query("SELECT * FROM movies ORDER BY movie_id");
@@ -9,17 +8,11 @@ $movies = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style/style.css">
-</head>
 
 <body>
- 
-    
+    <?php include 'includes/header.php'; ?>
+
     <div class="dunepic">
         <img src="style/images/dune.png" alt="Dune" width="1280x1024" class="dune">
     </div>
@@ -31,39 +24,43 @@ $movies = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
 
         <?php foreach ($movies as $movie): ?>
-          <div class="movie-item">
-            <h2><?= htmlspecialchars($movie['title']) ?></h2>
+            <div class="movie-item">
+                <h2><?= htmlspecialchars($movie['title']) ?></h2>
 
-            <p>
-                <?= htmlspecialchars($movie['description'] ?? '') ?>
-            </p>
+                <p>
+                    <?= htmlspecialchars($movie['description'] ?? '') ?>
+                </p>
 
-            <p>
-                release date:
-                <?= htmlspecialchars($movie['release_date'] ?? '') ?>
-            </p>
+                <p>
+                    release date:
+                    <?= htmlspecialchars($movie['release_date'] ?? '') ?>
+                </p>
 
-            <p>
-                Raiting:
-                <?= htmlspecialchars($movie['imd_rating'] ?? '') ?>
-            </p>
-        
-            <p>
-                <a href="film-detail.php?id=<?= htmlspecialchars($movie['movie_id'] ?? '') ?>">
-                    Bekijk details
-                </a>
-            </p>
-            <hr>
-        </div>
+                <p>
+                    Raiting:
+                    <?= htmlspecialchars($movie['imd_rating'] ?? '') ?>
+                </p>
 
-    <?php endforeach; ?>
+                <p>
+                    <a href="film-detail.php?id=<?= htmlspecialchars($movie['movie_id'] ?? '') ?>">
+                        Bekijk details
+                    </a>
+                </p>
+                <p>
+                    <poster>
+                        <img src="<?= htmlspecialchars($movie['poster'] ?? 'style/images/Placeholder.png') ?>" alt="Poster" width="200">
+                    </poster>
+                </p>
+                <hr>
+            </div>
+
+        <?php endforeach; ?>
     </div>
 
 
-    
 
+
+    <?php include 'includes/footer.php'; ?>
 </body>
-<?php
-include 'includes/footer.php';
-?>
+
 </html>
