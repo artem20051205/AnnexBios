@@ -98,6 +98,31 @@
         @apply text-white no-underline mx-[15px] text-[16px];
     }
 
+.footer-links a:hover {
+    color: #67294c;
+}
+.chairs {
+    padding: 30px 20px;
+    color: white;
+    text-align: center;
+}
+
+.chairs h1 {
+    font-size: 32px;
+}
+
+.chair-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 64px);
+    gap: 16px;
+    justify-content: center;
+}
+
+.chair-grid img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+}
     .footer-links a:hover {
         @apply text-[#67294c];
     }
@@ -132,6 +157,17 @@
         text-shadow: none;
     }
 
+@media (max-width: 480px) {
+    .chair-grid {
+        grid-template-columns: repeat(4, 64px);
+    }
+}
+.screen {
+    width: 100%;
+    height: 50px;
+    background-color: #444;
+    margin-bottom: 20px;
+    border-radius: 5px;
     .arraybackground .movie-item hr {
         @apply border-0 border-t border-white/25 my-5;
     }

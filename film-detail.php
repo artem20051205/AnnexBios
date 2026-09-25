@@ -9,12 +9,13 @@ $stmt->execute([$id]);
 $movie = $stmt->fetch(PDO::FETCH_ASSOC); // одна строка или false
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 
-<?php include 'includes/header.php'; ?>
-
+<?php include 'includes/head.php'; ?>
 
 <body>
+    <?php include 'includes/header.php'; ?>
+
     <?php if ($movie): ?>
         <h1><?= htmlspecialchars($movie['title']) ?></h1>
         <p><?= htmlspecialchars($movie['description'] ?? '') ?></p>
