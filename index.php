@@ -14,7 +14,8 @@ $movies = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <?php include 'includes/header.php'; ?>
 
-    <!-- Dune afbeelding -->
+
+    <!-- DUNE AFBEELDING -->
     <div class="dunepic">
 
         <img
@@ -23,7 +24,7 @@ $movies = $stmt->fetchAll(PDO::FETCH_ASSOC);
             class="dune"
         >
 
-        <!-- Tekst op de afbeelding -->
+        <!-- TEKST OP AFBEELDING -->
         <div class="film-intro">
 
             <h2>Welkom bij AnnexBios Bilthoven</h2>
@@ -39,54 +40,103 @@ $movies = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 
 
-    <!-- Films uit database -->
+    <!-- FILMS -->
     <div class="arraybackground">
 
-        <?php foreach ($movies as $movie): ?>
+        <h2 class="movies-title">
+            NU DRAAIEND
+        </h2>
 
-            <div class="movie-item">
 
-                <h2>
-                    <?= htmlspecialchars($movie['title']) ?>
-                </h2>
+        <!-- SLIDER -->
+        <div class="movie-slider">
 
-                <p>
-                    <?= htmlspecialchars($movie['description'] ?? '') ?>
-                </p>
+            <!-- LINKER PIJL -->
+            <button
+                class="slider-arrow arrow-left"
+                onclick="scrollMovies(-1)"
+            >
+                &#10094;
+            </button>
 
-                <p>
-                    Release date:
-                    <?= htmlspecialchars($movie['release_date'] ?? '') ?>
-                </p>
 
-                <p>
-                    Rating:
-                    <?= htmlspecialchars($movie['imd_rating'] ?? '') ?>
-                </p>
+            <!-- FILMS -->
+            <div class="movies-scroll" id="moviesScroll">
 
-                <p>
-                    <a href="film-detail.php?id=<?= htmlspecialchars($movie['movie_id'] ?? '') ?>">
-                        Bekijk details
-                    </a>
-                </p>
+                <?php foreach ($movies as $movie): ?>
 
-                <p>
-                    <img
-                        src="<?= htmlspecialchars($movie['poster'] ?? 'style/images/Placeholder.png') ?>"
-                        alt="Poster"
-                        width="200"
-                    >
-                </p>
+                    <div class="movie-item">
 
-                <hr>
+                        <img
+                            class="movie-poster"
+                            src="<?= htmlspecialchars(
+                                !empty($movie['poster'])
+                                    ? $movie['poster']
+                                    : 'style/images/Placeholder.png'
+                            ) ?>"
+                            alt="<?= htmlspecialchars($movie['title']) ?>"
+                        >
+
+
+                        <a
+                            class="details-button"
+                            href="film-detail.php?id=<?= htmlspecialchars($movie['movie_id']) ?>"
+                        >
+                            BEKIJKEN
+                        </a>
+
+
+                        <h2>
+                            <?= htmlspecialchars($movie['title']) ?>
+                        </h2>
+
+
+                        <p>
+                            Rating:
+                            <?= htmlspecialchars($movie['imd_rating'] ?? '') ?>
+                        </p>
+
+
+
+
+                    </div>
+
+                <?php endforeach; ?>
 
             </div>
 
-        <?php endforeach; ?>
+
+            <!-- RECHTER PIJL -->
+            <button
+                class="slider-arrow arrow-right"
+                onclick="scrollMovies(1)"
+            >
+                &#10095;
+            </button>
+
+        </div>
 
     </div>
 
+
     <?php include 'includes/footer.php'; ?>
+
+
+    <!-- SLIDER JAVASCRIPT -->
+    <script>
+
+        function scrollMovies(direction) {
+
+            const movies = document.getElementById("moviesScroll");
+
+            movies.scrollBy({
+                left: direction * 500,
+                behavior: "smooth"
+            });
+
+        }
+
+    </script>
 
 </body>
 

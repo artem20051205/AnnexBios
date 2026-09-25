@@ -4,4 +4,5 @@
     <title>AnnexBios Bilthoven</title>
     <link rel="icon" type="image/png" href="style/images/icon2.png">
     <link rel="stylesheet" href="style/output.css">
+    <link rel="stylesheet" href="style/style.css">
 </head>
