@@ -1,8 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
     margin: 0;
     background: #000 url('images/Background.png') no-repeat center center fixed;
     background-size: cover;
 }
+
+
+/* HEADER */
 
 header {
     display: flex;
@@ -18,7 +25,9 @@ header {
     height: auto;
 }
 
-/* Navigatie */
+
+/* NAVIGATIE */
+
 nav {
     display: flex;
     gap: 45px;
@@ -26,7 +35,9 @@ nav {
     align-items: center;
 }
 
-/* Links */
+
+/* LINKS */
+
 nav a {
     position: relative;
     color: white;
@@ -36,7 +47,9 @@ nav a {
     padding: 10px 0;
 }
 
-/* Streepje onder de tekst */
+
+/* STREEPJE ONDER LINK */
+
 nav a::after {
     content: "";
     position: absolute;
@@ -46,56 +59,80 @@ nav a::after {
     height: 3px;
     background-color: white;
     transition: width 0.3s ease;
-        background: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 0.9),
-        rgba(0, 0, 0, 0)
-    );
 }
 
-/* Als je met je muis over de link gaat */
+
+/* HOVER NAVIGATIE */
+
 nav a:hover {
     color: #67294c;
 }
 
+
+/* DUNE AFBEELDING */
+
 .dunepic {
     position: relative;
     width: 100%;
-    margin: 0;
+    max-width: 1280px;
+    margin: 0 auto;
+    overflow: hidden;
 }
 
-img.dune {
+.dune {
     display: block;
     width: 100%;
-    max-width: 1280px;
     height: 575px;
     object-fit: cover;
-    margin: 0 auto;
 }
 
-.film-intro {
-    position: relative;
-    z-index: 2;
-    margin-top: 20px;
-    padding-top: 10px;
+/* DARK FADE OVER DE AFBEELDING */
+.dunepic::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.8),
+        rgba(0, 0, 0, 0.3),
+        transparent
+    );
 }
+
+/* Text/button position */
+.film-intro {
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+/* TITEL OP AFBEELDING */
 
 .film-intro h2 {
     color: white;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 65px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 32px;
     margin: 0 0 10px;
-    text-shadow: 8px 8px 8px rgba(0, 0, 0, 0.7);
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
 }
+
+
+/* TEKST OP AFBEELDING */
 
 .film-intro p {
     color: white;
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 45px;
-    margin: 18px 0 0;
+    font-size: 18px;
+    margin: 8px 0;
     line-height: 1.2;
     text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
 }
+
+
+/* KNOP OP AFBEELDING */
 
 .film-intro button {
     margin-top: 20px;
@@ -107,6 +144,69 @@ img.dune {
     border: none;
     cursor: pointer;
 }
+
+.film-intro button:hover {
+    background-color: #813460;
+}
+
+
+/* FILMS ACHTERGROND */
+
+.arraybackground {
+    position: relative;
+    z-index: 2;
+    width: auto;
+    min-height: 200px;
+
+    background: linear-gradient(
+        180deg,
+        rgba(15, 13, 22, 0.95),
+        rgba(25, 29, 37, 0.95)
+    );
+
+    padding: 20px 40px 40px;
+    margin-top: 8px;
+    box-sizing: border-box;
+}
+
+
+/* FILM ITEM */
+
+.arraybackground .movie-item {
+    padding: 10px 0;
+}
+
+
+/* FILM TITEL */
+
+.arraybackground .movie-item h2 {
+    color: white;
+    font-size: 32px;
+    margin: 0 0 10px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+
+/* FILM TEKST */
+
+.arraybackground .movie-item p {
+    color: white;
+    font-size: 18px;
+    margin: 8px 0;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+
+/* LIJN TUSSEN FILMS */
+
+.arraybackground .movie-item hr {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    margin: 20px 0;
+}
+
+
+/* FOOTER */
 
 footer {
     background-color: rgb(20, 23, 25);
