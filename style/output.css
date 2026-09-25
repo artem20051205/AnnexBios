@@ -556,154 +556,131 @@ video {
 
 header {
   display: flex;
-  min-height: 120px;
   align-items: center;
-  border-radius: 10px;
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
   background-color: rgb(20, 23, 25);
+  border-radius: 10px;
+  padding: 20px 40px;
+  min-height: 120px;
 }
 
 .logo {
-  height: auto;
   width: 300px;
+  height: auto;
 }
 
 /* Navigatie */
 
 nav {
-  margin-left: 100px;
   display: flex;
-  align-items: center;
   gap: 45px;
+  margin-left: 100px;
+  align-items: center;
 }
 
 /* Links */
 
 nav a {
   position: relative;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-size: 20px;
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
-  text-decoration-line: none;
+  color: white;
+  text-decoration: none;
   font-family: Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  padding: 10px 0;
 }
 
-/* Streep onder link */
+/* Streepje onder de tekst */
 
 nav a::after {
   content: "";
   position: absolute;
-  left: 0px;
-  bottom: 0px;
+  left: 0;
+  bottom: 0;
+  width: 0;
   height: 3px;
-  width: 0px;
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
   background-color: white;
+  transition: width 0.3s ease;
+  background: linear-gradient(
+
+        to right,
+
+        rgba(0, 0, 0, 0.9),
+
+        rgba(0, 0, 0, 0)
+
+    );
 }
 
-nav a:hover::after {
-  width: 100%;
-}
+/* Als je met je muis over de link gaat */
 
 nav a:hover {
-  --tw-text-opacity: 1;
-  color: rgb(103 41 76 / var(--tw-text-opacity, 1));
+  color: #67294c;
 }
-
-/* Dune afbeelding */
 
 .dunepic {
   position: relative;
-  margin: 0px;
   width: 100%;
+  margin: 0;
 }
 
 img.dune {
-  margin-left: auto;
-  margin-right: auto;
   display: block;
-  height: 575px;
   width: 100%;
   max-width: 1280px;
+  height: 575px;
   -o-object-fit: cover;
      object-fit: cover;
+  margin: 0 auto;
 }
-
-/* Film intro */
 
 .film-intro {
   position: relative;
   z-index: 2;
-  margin-top: 1.25rem;
+  margin-top: 20px;
   padding-top: 10px;
 }
 
 .film-intro h2 {
-  margin-top: 0px;
-  margin-bottom: 10px;
+  color: white;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: 65px;
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  margin: 0 0 10px;
   text-shadow: 8px 8px 8px rgba(0, 0, 0, 0.7);
 }
 
 .film-intro p {
-  margin-top: 18px;
-  margin-bottom: 0px;
-  font-size: 45px;
-  line-height: 1.2;
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+  color: white;
   font-family: Helvetica, Arial, sans-serif;
+  font-size: 45px;
+  margin: 18px 0 0;
+  line-height: 1.2;
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
 }
 
 .film-intro button {
-  margin-top: 1.25rem;
-  cursor: pointer;
-  border-radius: 10px;
-  border-width: 0px;
-  --tw-bg-opacity: 1;
-  background-color: rgb(103 41 76 / var(--tw-bg-opacity, 1));
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  margin-top: 20px;
+  padding: 15px 30px;
   font-size: 30px;
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+  background-color: #67294c;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
 }
-
-.film-intro button:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(129 52 96 / var(--tw-bg-opacity, 1));
-}
-
-/* Footer */
 
 footer {
-  margin-top: 30px;
-  border-radius: 10px;
-  padding: 30px;
-  text-align: center;
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
   background-color: rgb(20, 23, 25);
+  color: white;
+  text-align: center;
+  padding: 30px;
+  margin-top: 30px;
   font-family: Helvetica, Arial, sans-serif;
+  border-radius: 10px;
 }
 
 footer p {
   position: static;
-  margin: 5px;
   font-size: 16px;
+  margin: 5px;
   text-shadow: none;
 }
 
@@ -712,73 +689,57 @@ footer p {
 }
 
 .footer-links a {
-  margin-left: 15px;
-  margin-right: 15px;
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
   font-size: 16px;
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
-  text-decoration-line: none;
 }
 
 .footer-links a:hover {
-  --tw-text-opacity: 1;
-  color: rgb(103 41 76 / var(--tw-text-opacity, 1));
+  color: #67294c;
 }
-
-/* Array / film lijst achtergrond */
 
 .arraybackground {
   position: relative;
   z-index: 2;
-  margin-top: 0.5rem;
-  box-sizing: border-box;
+  width: auto;
   min-height: 200px;
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
-  padding-top: 1.25rem;
-  padding-bottom: 2.5rem;
-  background: linear-gradient(
-            180deg,
-            rgba(15, 13, 22, 0.95),
-            rgba(25, 29, 37, 0.95)
-        );
+  background: linear-gradient(180deg, rgba(15, 13, 22, 0.95), rgba(25, 29, 37, 0.95));
+  padding: 20px 40px 40px;
+  margin-top: 8px;
+  box-sizing: border-box;
 }
 
 .arraybackground .film-intro {
-  margin-bottom: 1.25rem;
+  margin-bottom: 20px;
 }
 
 .arraybackground .movie-item h2,
-    .arraybackground .film-intro h2 {
-  margin-top: 0px;
-  margin-bottom: 10px;
+
+.arraybackground .film-intro h2 {
+  color: white;
   font-size: 32px;
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+  margin: 0 0 10px;
   font-family: Helvetica, Arial, sans-serif;
 }
 
 .arraybackground .movie-item p,
-    .arraybackground .film-intro p {
-  position: static;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+
+.arraybackground .film-intro p {
+  color: white;
   font-size: 18px;
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
-  font-family: Helvetica, Arial, sans-serif;
+  margin: 8px 0;
+  position: static;
   text-shadow: none;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 .arraybackground .movie-item hr {
-  margin-top: 1.25rem;
-  margin-bottom: 1.25rem;
-  border-width: 0px;
-  border-top-width: 1px;
-  border-color: rgb(255 255 255 / 0.25);
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  margin: 20px 0;
 }
 
 .arraybackground .movie-item {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px 0;
 }
