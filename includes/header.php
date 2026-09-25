@@ -21,9 +21,7 @@
             Kies een film
         </a>
 
-        <a href="bestellen.php" class="relative py-2 text-xl text-white transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:text-[#67294c] hover:after:w-full">
-            Bestellen
-        </a>
+
 
         <a href="admin.html" class="relative py-2 text-xl text-white transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:text-[#67294c] hover:after:w-full">
             Admin
