@@ -155,10 +155,15 @@ nav a:hover {
 
 .film-intro h2 {
     color: white;
+
     font-family: Helvetica, Arial, sans-serif;
+
     font-size: 42px;
+
     font-weight: 900;
+
     margin: 0 0 10px;
+
     text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
 }
 
@@ -378,14 +383,10 @@ nav a:hover {
 }
 
 
-/* LINKER PIJL */
-
 .arrow-left {
     left: 5px;
 }
 
-
-/* RECHTER PIJL */
 
 .arrow-right {
     right: 5px;
@@ -519,61 +520,99 @@ footer p {
 }
 
 
-/* STOELEN */
+/* STOELEN GEDEELTE */
 
 .chairs {
-    padding: 30px 20px;
+    width: 100%;
+    max-width: 1100px;
+
+    margin: 40px auto;
+
+    padding: 35px 40px;
+
+    box-sizing: border-box;
 
     color: white;
 
     text-align: center;
+
+    font-family: Helvetica, Arial, sans-serif;
+
+    background: rgba(15, 13, 22, 0.90);
+
+    border-radius: 15px;
 }
 
+
+/* TITEL */
 
 .chairs h1 {
-    font-size: 32px;
+    font-size: 36px;
+
+    font-weight: 900;
+
+    margin: 0 0 10px;
 }
 
 
-.chair-grid {
-    display: grid;
+.chairs h2 {
+    font-size: 20px;
 
-    grid-template-columns: repeat(8, 64px);
-
-    gap: 16px;
-
-    justify-content: center;
-}
-
-
-.chair-grid img {
-    width: 64px;
-    height: 64px;
-
-    object-fit: contain;
-}
-
-
-@media (max-width: 480px) {
-
-    .chair-grid {
-        grid-template-columns: repeat(4, 64px);
-    }
-
+    margin: 5px 0;
 }
 
 
 /* BIOSCOOP SCHERM */
 
 .screen {
-    width: 100%;
-    height: 50px;
+    width: 85%;
+    height: 35px;
 
-    background-color: #444;
+    margin: 35px auto 55px;
 
-    margin-bottom: 20px;
+    background: linear-gradient(
+        to bottom,
+        #eeeeee,
+        #777777
+    );
 
-    border-radius: 5px;
+    border-radius: 50% 50% 10px 10px;
+
+    box-shadow:
+        0 5px 15px rgba(255, 255, 255, 0.15),
+        0 0 25px rgba(255, 255, 255, 0.15);
+}
+
+
+/* STOELEN GRID */
+
+.chair-grid {
+    display: grid;
+
+    grid-template-columns: repeat(8, 64px);
+
+    gap: 22px;
+
+    justify-content: center;
+}
+
+
+/* STOEL AFBEELDING */
+
+.chair-grid img {
+    width: 55px;
+    height: 55px;
+
+    object-fit: contain;
+
+    transition: transform 0.2s;
+}
+
+
+/* STOEL HOVER */
+
+.seat:hover img {
+    transform: scale(1.15);
 }
 
 
@@ -586,6 +625,8 @@ footer p {
 }
 
 
+/* STOEL + NUMMER */
+
 .seat-body {
     display: flex;
 
@@ -593,9 +634,15 @@ footer p {
 
     align-items: center;
 
+    gap: 5px;
+
+    color: white;
+
     cursor: pointer;
 }
 
+
+/* GESELECTEERDE STOEL */
 
 .seat .chair-selected {
     display: none;
@@ -611,13 +658,23 @@ footer p {
     display: block;
 }
 
-/* занятое кресло: нельзя выбрать */
-.seat-taken {
-    cursor: not-allowed;
-    opacity: 0.6;
+
+.seat input:checked + .seat-body img {
+    transform: scale(1.15);
 }
 
-/* рамка при навигации клавишей Tab */
+
+/* BEZETTE STOEL */
+
+.seat-taken {
+    cursor: not-allowed;
+
+    opacity: 0.45;
+}
+
+
+/* KEYBOARD FOCUS */
+
 .seat input:focus-visible + .seat-body {
     outline: 2px dashed white;
 
@@ -628,13 +685,193 @@ footer p {
 /* BEVESTIG KNOP */
 
 .confirm {
-    margin-top: 24px;
+    margin-top: 40px;
 
-    padding: 12px 32px;
+    padding: 14px 35px;
 
     font-size: 18px;
+
     background-color: #67294c;
+
     color: white;
-    border-radius: 10px;
+
+    border: none;
+
+    border-radius: 8px;
+
     cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.confirm:hover {
+    background-color: #813460;
+
+    transform: scale(1.05);
+}
+
+
+/* MOBIEL STOELEN */
+
+@media (max-width: 700px) {
+
+    .chairs {
+        width: 95%;
+
+        padding: 20px;
+    }
+
+
+    .chair-grid {
+        grid-template-columns: repeat(4, 55px);
+
+        gap: 15px;
+    }
+
+
+    .chair-grid img {
+        width: 50px;
+        height: 50px;
+    }
+
+
+    .screen {
+        width: 100%;
+    }
+}
+
+
+/* FILM DETAIL PAGINA */
+
+.detail-container {
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 40px auto;
+
+    padding: 30px;
+
+    box-sizing: border-box;
+
+    background: linear-gradient(
+        to right,
+        rgba(20, 23, 25, 0.98),
+        rgba(35, 20, 35, 0.95)
+    );
+
+    border-radius: 10px;
+
+    color: white;
+
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+
+/* POSTER EN INFO NAAST ELKAAR */
+
+.detail-movie {
+    display: flex;
+
+    gap: 40px;
+
+    align-items: flex-start;
+}
+
+
+/* POSTER */
+
+.detail-poster {
+    width: 280px;
+    height: 400px;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+}
+
+
+/* FILM INFO */
+
+.detail-info {
+    flex: 1;
+}
+
+
+/* FILM TITEL */
+
+.detail-info h1 {
+    font-size: 42px;
+
+    font-weight: 900;
+
+    margin: 0 0 20px;
+}
+
+
+/* BESCHRIJVING */
+
+.detail-description {
+    font-size: 18px;
+
+    line-height: 1.5;
+
+    margin-bottom: 25px;
+}
+
+
+/* ANDERE TEKST */
+
+.detail-info p {
+    font-size: 18px;
+
+    margin: 10px 0;
+}
+
+
+/* VOORSTELLINGEN TITEL */
+
+.detail-info h2 {
+    font-size: 28px;
+
+    margin-top: 30px;
+
+    margin-bottom: 15px;
+}
+
+
+/* VOORSTELLINGEN */
+
+.showtimes {
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+
+/* TIJD KNOP */
+
+.showtimes a {
+    background-color: #67294c;
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 12px 18px;
+
+    border-radius: 6px;
+
+    text-align: center;
+
+    font-size: 16px;
+}
+
+
+/* TIJD KNOP HOVER */
+
+.showtimes a:hover {
+    background-color: #813460;
 }
