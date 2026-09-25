@@ -11,33 +11,56 @@ $movies = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <?php include 'includes/head.php'; ?>
 
 <body>
+
     <?php include 'includes/header.php'; ?>
 
+    <!-- Dune afbeelding -->
     <div class="dunepic">
-        <img src="style/images/dune.png" alt="Dune" width="1280x1024" class="dune">
-    </div>
-    <div class="arraybackground">
+
+        <img
+            src="style/images/dune.png"
+            alt="Dune"
+            class="dune"
+        >
+
+        <!-- Tekst op de afbeelding -->
         <div class="film-intro">
+
             <h2>Welkom bij AnnexBios Bilthoven</h2>
+
             <p>Ontdek de laatste films in comfort</p>
-            <button onclick="window.location.href='films.php'">Film Agenda Bekijken</button>
+
+            <button onclick="window.location.href='films.php'">
+                Film Agenda Bekijken
+            </button>
+
         </div>
 
+    </div>
+
+
+    <!-- Films uit database -->
+    <div class="arraybackground">
+
         <?php foreach ($movies as $movie): ?>
+
             <div class="movie-item">
-                <h2><?= htmlspecialchars($movie['title']) ?></h2>
+
+                <h2>
+                    <?= htmlspecialchars($movie['title']) ?>
+                </h2>
 
                 <p>
                     <?= htmlspecialchars($movie['description'] ?? '') ?>
                 </p>
 
                 <p>
-                    release date:
+                    Release date:
                     <?= htmlspecialchars($movie['release_date'] ?? '') ?>
                 </p>
 
                 <p>
-                    Raiting:
+                    Rating:
                     <?= htmlspecialchars($movie['imd_rating'] ?? '') ?>
                 </p>
 
@@ -46,17 +69,25 @@ $movies = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         Bekijk details
                     </a>
                 </p>
+
                 <p>
-                    <poster>
-                        <img src="<?= htmlspecialchars($movie['poster'] ?? 'style/images/Placeholder.png') ?>" alt="Poster" width="200">
-                    </poster>
+                    <img
+                        src="<?= htmlspecialchars($movie['poster'] ?? 'style/images/Placeholder.png') ?>"
+                        alt="Poster"
+                        width="200"
+                    >
                 </p>
+
                 <hr>
+
             </div>
 
         <?php endforeach; ?>
+
     </div>
+
     <?php include 'includes/footer.php'; ?>
+
 </body>
 
 </html>
