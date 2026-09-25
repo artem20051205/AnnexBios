@@ -2,177 +2,240 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-
-    header {
-        @apply flex items-center rounded-[10px] px-10 py-5 min-h-[120px];
-        background-color: rgb(20, 23, 25);
-    }
-
-    .logo {
-        @apply w-[300px] h-auto;
-    }
-
-    /* Navigatie */
-    nav {
-        @apply flex items-center gap-[45px] ml-[100px];
-    }
-
-    /* Links */
-    nav a {
-        @apply relative text-white no-underline text-[20px] py-[10px];
-        font-family: Helvetica, Arial, sans-serif;
-    }
-
-    /* Streep onder link */
-    nav a::after {
-        content: "";
-        @apply absolute left-0 bottom-0 w-0 h-[3px] transition-all duration-300;
-        background-color: white;
-    }
-
-    nav a:hover::after {
-        @apply w-full;
-    }
-
-    nav a:hover {
-        @apply text-[#67294c];
-    }
+body {
+    margin: 0;
+    background: #000 url('images/Background.png') no-repeat center center fixed;
+    background-size: cover;
+}
 
 
-    /* Dune afbeelding */
-    .dunepic {
-        @apply relative w-full m-0;
-    }
+/* HEADER */
 
-    img.dune {
-        @apply block w-full max-w-[1280px] h-[575px] object-cover mx-auto;
-    }
+header {
+    display: flex;
+    align-items: center;
+    background-color: rgb(20, 23, 25);
+    border-radius: 10px;
+    padding: 20px 40px;
+    min-height: 120px;
+}
 
-
-    /* Film intro */
-    .film-intro {
-        @apply relative z-[2] mt-5 pt-[10px];
-    }
-
-    .film-intro h2 {
-        @apply text-white text-[65px] mt-0 mb-[10px];
-        font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-        text-shadow: 8px 8px 8px rgba(0, 0, 0, 0.7);
-    }
-
-    .film-intro p {
-        @apply text-white text-[45px] mt-[18px] mb-0 leading-[1.2];
-        font-family: Helvetica, Arial, sans-serif;
-        text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
-    }
-
-    .film-intro button {
-        @apply mt-5 px-[30px] py-[15px] text-[30px]
-               bg-[#67294c] text-white rounded-[10px]
-               border-0 cursor-pointer;
-    }
-
-    .film-intro button:hover {
-        @apply bg-[#813460];
-    }
+.logo {
+    width: 300px;
+    height: auto;
+}
 
 
-    /* Footer */
-    footer {
-        @apply text-white text-center p-[30px] mt-[30px] rounded-[10px];
-        background-color: rgb(20, 23, 25);
-        font-family: Helvetica, Arial, sans-serif;
-    }
+/* NAVIGATIE */
 
-    footer p {
-        @apply static text-[16px] m-[5px];
-        text-shadow: none;
-    }
+nav {
+    display: flex;
+    gap: 45px;
+    margin-left: 100px;
+    align-items: center;
+}
 
-    .footer-links {
-        @apply mt-[15px];
-    }
 
-    .footer-links a {
-        @apply text-white no-underline mx-[15px] text-[16px];
-    }
+/* LINKS */
+
+nav a {
+    position: relative;
+    color: white;
+    text-decoration: none;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    padding: 10px 0;
+}
+
+
+/* STREEPJE ONDER LINK */
+
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 3px;
+    background-color: white;
+    transition: width 0.3s ease;
+}
+
+
+/* HOVER NAVIGATIE */
+
+nav a:hover {
+    color: #67294c;
+}
+
+
+/* DUNE AFBEELDING */
+
+.dunepic {
+    position: relative;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.dune {
+    display: block;
+    width: 100%;
+    height: 575px;
+    object-fit: cover;
+}
+
+/* DARK FADE OVER DE AFBEELDING */
+.dunepic::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.8),
+        rgba(0, 0, 0, 0.3),
+        transparent
+    );
+}
+
+/* Text/button position */
+.film-intro {
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+/* TITEL OP AFBEELDING */
+
+.film-intro h2 {
+    color: white;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 32px;
+    margin: 0 0 10px;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
+}
+
+
+/* TEKST OP AFBEELDING */
+
+.film-intro p {
+    color: white;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    margin: 8px 0;
+    line-height: 1.2;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
+}
+
+
+/* KNOP OP AFBEELDING */
+
+.film-intro button {
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 30px;
+    background-color: #67294c;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.film-intro button:hover {
+    background-color: #813460;
+}
+
+
+/* FILMS ACHTERGROND */
+
+.arraybackground {
+    position: relative;
+    z-index: 2;
+    width: auto;
+    min-height: 200px;
+
+    background: linear-gradient(
+        180deg,
+        rgba(15, 13, 22, 0.95),
+        rgba(25, 29, 37, 0.95)
+    );
+
+    padding: 20px 40px 40px;
+    margin-top: 8px;
+    box-sizing: border-box;
+}
+
+
+/* FILM ITEM */
+
+.arraybackground .movie-item {
+    padding: 10px 0;
+}
+
+
+/* FILM TITEL */
+
+.arraybackground .movie-item h2 {
+    color: white;
+    font-size: 32px;
+    margin: 0 0 10px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+
+/* FILM TEKST */
+
+.arraybackground .movie-item p {
+    color: white;
+    font-size: 18px;
+    margin: 8px 0;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+
+/* LIJN TUSSEN FILMS */
+
+.arraybackground .movie-item hr {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    margin: 20px 0;
+}
+
+
+/* FOOTER */
+
+footer {
+    background-color: rgb(20, 23, 25);
+    color: white;
+    text-align: center;
+    padding: 30px;
+    margin-top: 30px;
+    font-family: Helvetica, Arial, sans-serif;
+    border-radius: 10px;
+}
+
+footer p {
+    position: static;
+    font-size: 16px;
+    margin: 5px;
+    text-shadow: none;
+}
+
+.footer-links {
+    margin-top: 15px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+}
 
 .footer-links a:hover {
     color: #67294c;
-}
-.chairs {
-    padding: 30px 20px;
-    color: white;
-    text-align: center;
-}
-
-.chairs h1 {
-    font-size: 32px;
-}
-
-.chair-grid {
-    display: grid;
-    grid-template-columns: repeat(8, 64px);
-    gap: 16px;
-    justify-content: center;
-}
-
-.chair-grid img {
-    width: 64px;
-    height: 64px;
-    object-fit: contain;
-}
-    .footer-links a:hover {
-        @apply text-[#67294c];
-    }
-
-
-    /* Array / film lijst achtergrond */
-    .arraybackground {
-        @apply relative z-[2] min-h-[200px]
-               px-10 pt-5 pb-10 mt-2 box-border;
-
-        background: linear-gradient(
-            180deg,
-            rgba(15, 13, 22, 0.95),
-            rgba(25, 29, 37, 0.95)
-        );
-    }
-
-    .arraybackground .film-intro {
-        @apply mb-5;
-    }
-
-    .arraybackground .movie-item h2,
-    .arraybackground .film-intro h2 {
-        @apply text-white text-[32px] mt-0 mb-[10px];
-        font-family: Helvetica, Arial, sans-serif;
-    }
-
-    .arraybackground .movie-item p,
-    .arraybackground .film-intro p {
-        @apply text-white text-[18px] my-2 static;
-        font-family: Helvetica, Arial, sans-serif;
-        text-shadow: none;
-    }
-
-@media (max-width: 480px) {
-    .chair-grid {
-        grid-template-columns: repeat(4, 64px);
-    }
-}
-.screen {
-    width: 100%;
-    height: 50px;
-    background-color: #444;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    .arraybackground .movie-item hr {
-        @apply border-0 border-t border-white/25 my-5;
-    }
-
-    .arraybackground .movie-item {
-        @apply py-[10px];
-    }
 }
