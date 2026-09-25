@@ -65,48 +65,49 @@ nav a:hover {
 .dunepic {
     position: relative;
     width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
+    margin: 0;
 }
 
 img.dune {
     display: block;
     width: 100%;
+    max-width: 1280px;
     height: 575px;
     object-fit: cover;
+    margin: 0 auto;
 }
 
-/* Text on top of image */
 .film-intro {
-    position: absolute;
-    left: 40px;
-    bottom: 40px;
+    position: relative;
     z-index: 2;
+    margin-top: 20px;
+    padding-top: 10px;
 }
 
 .film-intro h2 {
     color: white;
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 32px;
-    margin: 0 0 8px;
-    text-shadow: 2px 2px 5px black;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 65px;
+    margin: 0 0 10px;
+    text-shadow: 8px 8px 8px rgba(0, 0, 0, 0.7);
 }
 
 .film-intro p {
     color: white;
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 18px;
-    margin: 0;
-    text-shadow: 2px 2px 5px black;
+    font-size: 45px;
+    margin: 18px 0 0;
+    line-height: 1.2;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
 }
 
 .film-intro button {
     margin-top: 20px;
-    padding: 12px 25px;
-    font-size: 20px;
+    padding: 15px 30px;
+    font-size: 30px;
     background-color: #67294c;
     color: white;
-    border-radius: 8px;
+    border-radius: 10px;
     border: none;
     cursor: pointer;
 }
