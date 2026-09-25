@@ -139,45 +139,38 @@ footer p {
 .footer-links a:hover {
     color: #67294c;
 }
-.arraybackground {
-    position: relative;
-    z-index: 2;
-    width: auto;
-    min-height: 200px;
-    background: linear-gradient(180deg, rgba(15, 13, 22, 0.95), rgba(25, 29, 37, 0.95));
-    padding: 20px 40px 40px;
-    margin-top: 8px;
-    box-sizing: border-box;
-}
-
-.arraybackground .film-intro {
-    margin-bottom: 20px;
-}
-
-.arraybackground .movie-item h2,
-.arraybackground .film-intro h2 {
+.chairs {
+    padding: 30px 20px;
     color: white;
+    text-align: center;
+}
+
+.chairs h1 {
     font-size: 32px;
-    margin: 0 0 10px;
-    font-family: Helvetica, Arial, sans-serif;
 }
 
-.arraybackground .movie-item p,
-.arraybackground .film-intro p {
-    color: white;
-    font-size: 18px;
-    margin: 8px 0;
-    position: static;
-    text-shadow: none;
-    font-family: Helvetica, Arial, sans-serif;
+.chair-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 64px);
+    gap: 16px;
+    justify-content: center;
 }
 
-.arraybackground .movie-item hr {
-    border: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.25);
-    margin: 20px 0;
+.chair-grid img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
 }
 
-.arraybackground .movie-item {
-    padding: 10px 0;
+@media (max-width: 480px) {
+    .chair-grid {
+        grid-template-columns: repeat(4, 64px);
+    }
+}
+.screen {
+    width: 100%;
+    height: 50px;
+    background-color: #444;
+    margin-bottom: 20px;
+    border-radius: 5px;
 }

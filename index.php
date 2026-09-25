@@ -6,9 +6,9 @@ $movies = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 
-
+<?php include 'includes/head.php'; ?>
 
 <body>
     <?php include 'includes/header.php'; ?>
@@ -56,10 +56,6 @@ $movies = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <?php endforeach; ?>
     </div>
-
-
-
-
     <?php include 'includes/footer.php'; ?>
 </body>
 
