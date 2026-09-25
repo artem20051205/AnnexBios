@@ -1,25 +1,8 @@
 <?php
+require_once 'db.php';
 
-$films = [
-    [
-        'title' => 'Dune: Part Two',
-        'description' => 'Paul Atreides reist verder in een epische strijd om de toekomst van zijn familie en de planeet Arrakis.',
-        'release_date' => '2024-02-29',
-        'rating' => 8.6,
-    ],
-    [
-        'title' => 'The Batman',
-        'description' => 'Batman onderzoekt een reeks moorden in Gotham en komt dichter bij de waarheid over de stad.',
-        'release_date' => '2022-03-04',
-        'rating' => 7.8,
-    ],
-    [
-        'title' => 'Oppenheimer',
-        'description' => 'Het verhaal van J. Robert Oppenheimer en zijn rol bij de ontwikkeling van de atoombom.',
-        'release_date' => '2023-07-21',
-        'rating' => 8.4,
-    ],
-];
+$stmt = $pdo->query("SELECT * FROM movies ORDER BY movie_id");
+$films = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +13,7 @@ $films = [
 </head>
 <body>
 <?php foreach ($films as $film): ?>
-      <div>
+    <div>
         <h2><?= htmlspecialchars($film['title']) ?></h2>
 
         <p>
@@ -44,8 +27,12 @@ $films = [
 
         <p>
             Rating:
-            <?= htmlspecialchars((string) $film['rating']) ?>
+            <?= htmlspecialchars($film['imd_rating'] ?? '') ?>
         </p>
+
+        <a href="film-detail.php?id=<?= (int) $film['movie_id'] ?>">
+            Bekijk details
+        </a>
 
         <hr>
     </div>

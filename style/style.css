@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* BODY */
+
 body {
     margin: 0;
     background: #000 url('images/Background.png') no-repeat center center fixed;
@@ -14,11 +17,18 @@ body {
 header {
     display: flex;
     align-items: center;
+
     background-color: rgb(20, 23, 25);
+
     border-radius: 10px;
+
     padding: 20px 40px;
+
     min-height: 120px;
 }
+
+
+/* LOGO */
 
 .logo {
     width: 300px;
@@ -30,8 +40,11 @@ header {
 
 nav {
     display: flex;
+
     gap: 45px;
+
     margin-left: 100px;
+
     align-items: center;
 }
 
@@ -40,10 +53,15 @@ nav {
 
 nav a {
     position: relative;
+
     color: white;
+
     text-decoration: none;
+
     font-family: Helvetica, Arial, sans-serif;
+
     font-size: 20px;
+
     padding: 10px 0;
 }
 
@@ -52,12 +70,17 @@ nav a {
 
 nav a::after {
     content: "";
+
     position: absolute;
+
     left: 0;
     bottom: 0;
+
     width: 0;
     height: 3px;
+
     background-color: white;
+
     transition: width 0.3s ease;
 }
 
@@ -73,24 +96,37 @@ nav a:hover {
 
 .dunepic {
     position: relative;
+
     width: 100%;
     max-width: 1280px;
+
     margin: 0 auto;
+
     overflow: hidden;
 }
 
+
 .dune {
     display: block;
+
     width: 100%;
     height: 575px;
+
     object-fit: cover;
 }
 
-/* DARK FADE OVER DE AFBEELDING */
+
+/* DARK FADE OVER DUNE */
+
 .dunepic::after {
     content: "";
+
     position: absolute;
-    inset: 0;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 
     background: linear-gradient(
         to right,
@@ -100,109 +136,335 @@ nav a:hover {
     );
 }
 
-/* Text/button position */
+
+/* TEKST OP DUNE */
+
 .film-intro {
     position: absolute;
+
     left: 40px;
     top: 50%;
+
     transform: translateY(-50%);
+
     z-index: 2;
 }
 
-/* TITEL OP AFBEELDING */
+
+/* TITEL OP DUNE */
 
 .film-intro h2 {
     color: white;
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 32px;
+    font-size: 42px;
+    font-weight: 900;
     margin: 0 0 10px;
     text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
 }
 
 
-/* TEKST OP AFBEELDING */
+/* TEKST OP DUNE */
 
 .film-intro p {
     color: white;
+
     font-family: Helvetica, Arial, sans-serif;
+
     font-size: 18px;
+
     margin: 8px 0;
+
     line-height: 1.2;
+
     text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
 }
 
 
-/* KNOP OP AFBEELDING */
+/* KNOP OP DUNE */
 
 .film-intro button {
     margin-top: 20px;
+
     padding: 15px 30px;
+
     font-size: 30px;
+
     background-color: #67294c;
+
     color: white;
+
     border-radius: 10px;
+
     border: none;
+
     cursor: pointer;
 }
+
 
 .film-intro button:hover {
     background-color: #813460;
 }
 
 
-/* FILMS ACHTERGROND */
+/* FILM GEDEELTE */
 
 .arraybackground {
-    position: relative;
-    z-index: 2;
-    width: auto;
-    min-height: 200px;
+    width: 100%;
+    max-width: 1280px;
+
+    margin: 0 auto;
+
+    padding: 25px 40px 35px;
+
+    box-sizing: border-box;
 
     background: linear-gradient(
         180deg,
-        rgba(15, 13, 22, 0.95),
-        rgba(25, 29, 37, 0.95)
+        rgba(15, 13, 22, 0.98),
+        rgba(25, 29, 37, 0.98)
     );
+}
 
-    padding: 20px 40px 40px;
-    margin-top: 8px;
+
+/* NU DRAAIEND */
+
+.movies-title {
+    color: white;
+
+    font-family: Helvetica, Arial, sans-serif;
+
+    font-size: 28px;
+
+    margin: 0 0 20px;
+}
+
+
+/* SLIDER */
+
+.movie-slider {
+    position: relative;
+}
+
+
+/* FILMS NAAST ELKAAR */
+
+.movies-scroll {
+    display: flex;
+
+    gap: 20px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scroll-behavior: smooth;
+
+    padding: 0 35px 15px;
+}
+
+
+/* FILM KAART */
+
+.movie-item {
+    flex: 0 0 210px;
+
+    background-color: rgb(20, 23, 25);
+
+    padding: 10px;
+
+    border-radius: 5px;
+
     box-sizing: border-box;
 }
 
 
-/* FILM ITEM */
+/* POSTER */
 
-.arraybackground .movie-item {
-    padding: 10px 0;
+.movie-poster {
+    display: block;
+
+    width: 100%;
+    height: 280px;
+
+    object-fit: cover;
 }
 
 
 /* FILM TITEL */
 
-.arraybackground .movie-item h2 {
+.movie-item h2 {
     color: white;
-    font-size: 32px;
-    margin: 0 0 10px;
+
     font-family: Helvetica, Arial, sans-serif;
+
+    font-size: 16px;
+
+    margin: 10px 0 5px;
 }
 
 
 /* FILM TEKST */
 
-.arraybackground .movie-item p {
+.movie-item p {
     color: white;
-    font-size: 18px;
-    margin: 8px 0;
+
     font-family: Helvetica, Arial, sans-serif;
+
+    font-size: 13px;
+
+    margin: 5px 0;
 }
 
 
-/* LIJN TUSSEN FILMS */
+/* BEKIJKEN KNOP */
 
-.arraybackground .movie-item hr {
-    border: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.25);
-    margin: 20px 0;
+.details-button {
+    display: block;
+
+    width: fit-content;
+
+    margin: 10px auto;
+
+    padding: 7px 15px;
+
+    background-color: #67294c;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-family: Helvetica, Arial, sans-serif;
+
+    font-size: 12px;
+
+    border-radius: 4px;
+}
+
+
+.details-button:hover {
+    background-color: #813460;
+}
+
+
+/* PIJLEN */
+
+.slider-arrow {
+    position: absolute;
+
+    top: 40%;
+
+    transform: translateY(-50%);
+
+    width: 40px;
+    height: 40px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background-color: #67294c;
+
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    z-index: 5;
+}
+
+
+.slider-arrow:hover {
+    background-color: #813460;
+}
+
+
+/* LINKER PIJL */
+
+.arrow-left {
+    left: 5px;
+}
+
+
+/* RECHTER PIJL */
+
+.arrow-right {
+    right: 5px;
+}
+
+
+/* FADE LINKS */
+
+.movie-slider::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    bottom: 15px;
+    left: 0;
+
+    width: 70px;
+
+    background: linear-gradient(
+        to right,
+        rgb(15, 13, 22),
+        transparent
+    );
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+
+/* FADE RECHTS */
+
+.movie-slider::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    bottom: 15px;
+    right: 0;
+
+    width: 70px;
+
+    background: linear-gradient(
+        to left,
+        rgb(15, 13, 22),
+        transparent
+    );
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+
+/* SCROLLBAR */
+
+.movies-scroll::-webkit-scrollbar {
+    height: 7px;
+}
+
+
+.movies-scroll::-webkit-scrollbar-track {
+    background-color: rgb(20, 23, 25);
+
+    border-radius: 10px;
+}
+
+
+.movies-scroll::-webkit-scrollbar-thumb {
+    background-color: #67294c;
+
+    border-radius: 10px;
+}
+
+
+.movies-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: #813460;
 }
 
 
@@ -210,107 +472,169 @@ nav a:hover {
 
 footer {
     background-color: rgb(20, 23, 25);
+
     color: white;
+
     text-align: center;
+
     padding: 30px;
+
     margin-top: 30px;
+
     font-family: Helvetica, Arial, sans-serif;
+
     border-radius: 10px;
 }
 
+
 footer p {
     position: static;
+
     font-size: 16px;
+
     margin: 5px;
+
     text-shadow: none;
 }
+
 
 .footer-links {
     margin-top: 15px;
 }
 
+
 .footer-links a {
     color: white;
+
     text-decoration: none;
+
     margin: 0 15px;
+
     font-size: 16px;
 }
+
 
 .footer-links a:hover {
     color: #67294c;
 }
+
+
+/* STOELEN */
+
 .chairs {
     padding: 30px 20px;
+
     color: white;
+
     text-align: center;
 }
+
 
 .chairs h1 {
     font-size: 32px;
 }
 
+
 .chair-grid {
     display: grid;
+
     grid-template-columns: repeat(8, 64px);
+
     gap: 16px;
+
     justify-content: center;
 }
+
 
 .chair-grid img {
     width: 64px;
     height: 64px;
+
     object-fit: contain;
 }
 
+
 @media (max-width: 480px) {
+
     .chair-grid {
         grid-template-columns: repeat(4, 64px);
     }
+
 }
+
+
+/* BIOSCOOP SCHERM */
+
 .screen {
     width: 100%;
     height: 50px;
+
     background-color: #444;
+
     margin-bottom: 20px;
+
     border-radius: 5px;
 }
-/* чекбокс прячем, но не через display:none, чтобы работала клавиатура */
+
+
+/* STOEL CHECKBOX */
+
 .seat input {
     position: absolute;
+
     opacity: 0;
 }
 
+
 .seat-body {
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
+
     cursor: pointer;
 }
 
-/* по умолчанию видна обычная картинка */
+
 .seat .chair-selected {
     display: none;
 }
 
-/* выбранное кресло: меняем картинку */
+
 .seat input:checked + .seat-body .chair-free {
     display: none;
 }
+
 
 .seat input:checked + .seat-body .chair-selected {
     display: block;
 }
 
+/* занятое кресло: нельзя выбрать */
+.seat-taken {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
 /* рамка при навигации клавишей Tab */
 .seat input:focus-visible + .seat-body {
     outline: 2px dashed white;
+
     border-radius: 8px;
 }
 
+
+/* BEVESTIG KNOP */
+
 .confirm {
     margin-top: 24px;
+
     padding: 12px 32px;
+
     font-size: 18px;
+    background-color: #67294c;
+    color: white;
+    border-radius: 10px;
     cursor: pointer;
 }
-
