@@ -3,6 +3,15 @@ require_once 'db.php';
 
 $stmt = $pdo->query("SELECT * FROM movies ORDER BY movie_id");
 $movies = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$heroImage = 'style/images/dune.png';
+$heroStmt = $pdo->prepare("SELECT setting_value FROM site_settings WHERE setting_name = :name LIMIT 1");
+$heroStmt->execute([':name' => 'hero_image']);
+$heroRow = $heroStmt->fetch(PDO::FETCH_ASSOC);
+
+if ($heroRow && !empty($heroRow['setting_value'])) {
+    $heroImage = $heroRow['setting_value'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +28,7 @@ $movies = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="dunepic">
 
         <img
-            src="style/images/dune.png"
+            src="<?= htmlspecialchars($heroImage) ?>"
             alt="Dune"
             class="dune"
         >
