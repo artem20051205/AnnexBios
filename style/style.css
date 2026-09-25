@@ -174,3 +174,43 @@ footer p {
     margin-bottom: 20px;
     border-radius: 5px;
 }
+/* чекбокс прячем, но не через display:none, чтобы работала клавиатура */
+.seat input {
+    position: absolute;
+    opacity: 0;
+}
+
+.seat-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* по умолчанию видна обычная картинка */
+.seat .chair-selected {
+    display: none;
+}
+
+/* выбранное кресло: меняем картинку */
+.seat input:checked + .seat-body .chair-free {
+    display: none;
+}
+
+.seat input:checked + .seat-body .chair-selected {
+    display: block;
+}
+
+/* рамка при навигации клавишей Tab */
+.seat input:focus-visible + .seat-body {
+    outline: 2px dashed white;
+    border-radius: 8px;
+}
+
+.confirm {
+    margin-top: 24px;
+    padding: 12px 32px;
+    font-size: 18px;
+    cursor: pointer;
+}
+

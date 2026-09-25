@@ -7,6 +7,13 @@ $id = (int) ($_GET['id'] ?? 0);
 $stmt = $pdo->prepare("SELECT * FROM movies WHERE movie_id = ?");
 $stmt->execute([$id]);
 $movie = $stmt->fetch(PDO::FETCH_ASSOC); // одна строка или false
+
+$voorstellingen = [];
+if ($movie) {
+    $stmt = $pdo->prepare("SELECT * FROM voorstelling WHERE film_id = ? ORDER BY datum, begintijd");
+    $stmt->execute([$id]);
+    $voorstellingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -24,11 +31,18 @@ $movie = $stmt->fetch(PDO::FETCH_ASSOC); // одна строка или false
         <poster>
             <img src="<?= htmlspecialchars($movie['poster'] ?? 'style/images/Placeholder.png') ?>" alt="Poster" width="200">
         </poster>
+
+        <h2>Voorstellingen</h2>
+        <?php foreach ($voorstellingen as $v): ?>
+            <a href="bestellen.php?voorstelling=<?= $v['voorstelling_id'] ?>">
+                <?= htmlspecialchars($v['datum'] . ' ' . $v['begintijd']) ?>
+            </a>
+        <?php endforeach; ?>
     <?php else: ?>
         <h1>Unknown Film</h1>
     <?php endif; ?>
-    <button onclick="window.location.href='bestellen.php?id=<?= htmlspecialchars($movie['movie_id'] ?? '') ?>'" >Bestellen </button>
-        <?php include 'includes/footer.php'; ?>
+
+    <?php include 'includes/footer.php'; ?>
 </body>
 
 </html>
