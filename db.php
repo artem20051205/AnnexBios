@@ -13,7 +13,8 @@ try {
     );
 
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+ 
+    
 } catch (PDOException $e) {
     die("error: " . $e->getMessage());
 }
