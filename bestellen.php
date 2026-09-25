@@ -14,6 +14,11 @@ $stmt = $pdo->prepare(
 );
 $stmt->execute([$voorstellingId]);
 $voorstelling = $stmt->fetch(PDO::FETCH_ASSOC); // одна строка или false
+
+// уже забронированные кресла на этот сеанс
+$stmt = $pdo->prepare("SELECT stoel FROM reservering WHERE voorstelling_id = ?");
+$stmt->execute([$voorstellingId]);
+$bezet = $stmt->fetchAll(PDO::FETCH_COLUMN);
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -41,14 +46,21 @@ $voorstelling = $stmt->fetch(PDO::FETCH_ASSOC); // одна строка или 
                     <?php foreach ($rows as $row): ?>
                         <?php for ($seat = 1; $seat <= $seatsPerRow; $seat++): ?>
                             <?php $code = $row . $seat; ?>
-                            <label class="seat">
-                                <input type="checkbox" name="seats[]" value="<?php echo $code; ?>">
-                                <span class="seat-body">
-                                    <img src="style/images/chair.png" alt="" class="chair-free">
-                                    <img src="style/images/chairWhite.png" alt="" class="chair-selected">
+                            <?php if (in_array($code, $bezet)): ?>
+                                <span class="seat seat-body seat-taken">
+                                    <img src="style/images/chairgray.png" alt="Bezet">
                                     <?php echo $code; ?>
                                 </span>
-                            </label>
+                            <?php else: ?>
+                                <label class="seat">
+                                    <input type="checkbox" name="seats[]" value="<?php echo $code; ?>">
+                                    <span class="seat-body">
+                                        <img src="style/images/chair.png" alt="" class="chair-free">
+                                        <img src="style/images/chairwhite.png" alt="" class="chair-selected">
+                                        <?php echo $code; ?>
+                                    </span>
+                                </label>
+                            <?php endif; ?>
                         <?php endfor; ?>
                     <?php endforeach; ?>
                 </div>

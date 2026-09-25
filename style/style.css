@@ -301,6 +301,12 @@ footer p {
     display: block;
 }
 
+/* занятое кресло: нельзя выбрать */
+.seat-taken {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
 /* рамка при навигации клавишей Tab */
 .seat input:focus-visible + .seat-body {
     outline: 2px dashed white;
@@ -311,6 +317,9 @@ footer p {
     margin-top: 24px;
     padding: 12px 32px;
     font-size: 18px;
+    background-color: #67294c;
+    color: white;
+    border-radius: 10px;
     cursor: pointer;
 }
 
