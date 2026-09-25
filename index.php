@@ -97,9 +97,7 @@ $movies = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </p>
 
 
-                        <p>
-                            <?= htmlspecialchars($movie['release_date'] ?? '') ?>
-                        </p>
+
 
                     </div>
 
