@@ -1,8 +1,7 @@
 <?php
-require_once 'db.php';
+require_once 'api.php';
 
-$stmt = $pdo->query("SELECT * FROM movies ORDER BY movie_id");
-$films = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$films = api_movies();
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -29,12 +28,13 @@ $films = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <article class="group flex h-full flex-col overflow-hidden rounded-lg border border-white/10 bg-[rgb(20,23,25)] shadow-xl transition duration-300 hover:-translate-y-1 hover:border-[#67294c] hover:shadow-2xl">
                     <div class="relative overflow-hidden bg-black">
                         <img
-                            src="<?= htmlspecialchars($film['poster'] ?? 'style/images/Placeholder.png') ?>"
+                            src="<?= htmlspecialchars($film['posterPath']) ?>"
+                            onerror="this.onerror=null; this.src='style/images/Placeholder.png'"
                             alt="Poster van <?= htmlspecialchars($film['title']) ?>"
                             class="aspect-[2/3] w-full object-cover transition duration-500 group-hover:scale-105"
                         >
                         <span class="absolute right-3 top-3 rounded bg-black/80 px-3 py-1 text-sm font-semibold text-white">
-                            <?= htmlspecialchars($film['imd_rating'] ?? '-') ?> / 10
+                            <?= htmlspecialchars($film['imdRating'] ?? '-') ?> / 10
                         </span>
                     </div>
 
@@ -49,10 +49,10 @@ $films = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                         <div class="mt-auto border-t border-white/10 pt-4">
                             <p class="mb-4 text-sm text-gray-400">
-                                Release: <?= htmlspecialchars($film['release_date'] ?? '-') ?>
+                                Release: <?= htmlspecialchars($film['releaseDate'] ?? '-') ?>
                             </p>
                             <a
-                                href="film-detail.php?id=<?= (int) $film['movie_id'] ?>"
+                                href="film-detail.php?id=<?= (int) $film['movieId'] ?>"
                                 class="block rounded-md bg-[#67294c] px-4 py-3 text-center font-semibold text-white transition-colors hover:bg-[#813460]"
                             >
                                 Bekijk film

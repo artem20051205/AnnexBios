@@ -1,9 +1,10 @@
 <?php
+require_once 'api.php';
 require_once 'db.php';
 
-$stmt = $pdo->query("SELECT * FROM movies ORDER BY movie_id");
-$movies = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$movies = api_movies();
 
+// Homepage-afbeelding: instelling uit het adminpanel (database)
 $heroImage = 'style/images/dune.png';
 $heroStmt = $pdo->prepare("SELECT setting_value FROM site_settings WHERE setting_name = :name LIMIT 1");
 $heroStmt->execute([':name' => 'hero_image']);
@@ -78,18 +79,15 @@ if ($heroRow && !empty($heroRow['setting_value'])) {
 
                         <img
                             class="movie-poster"
-                            src="<?= htmlspecialchars(
-                                !empty($movie['poster'])
-                                    ? $movie['poster']
-                                    : 'style/images/Placeholder.png'
-                            ) ?>"
+                            src="<?= htmlspecialchars($movie['posterPath']) ?>"
+                            onerror="this.onerror=null; this.src='style/images/Placeholder.png'"
                             alt="<?= htmlspecialchars($movie['title']) ?>"
                         >
 
 
                         <a
                             class="details-button"
-                            href="film-detail.php?id=<?= htmlspecialchars($movie['movie_id']) ?>"
+                            href="film-detail.php?id=<?= (int) $movie['movieId'] ?>"
                         >
                             BEKIJKEN
                         </a>
@@ -102,7 +100,7 @@ if ($heroRow && !empty($heroRow['setting_value'])) {
 
                         <p>
                             Rating:
-                            <?= htmlspecialchars($movie['imd_rating'] ?? '') ?>
+                            <?= htmlspecialchars($movie['imdRating'] ?? '-') ?>
                         </p>
 
 

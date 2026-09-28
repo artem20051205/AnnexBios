@@ -2,20 +2,14 @@
 $rows = ['A', 'B', 'C', 'D', 'E'];
 $seatsPerRow = 8;
 
+require_once 'api.php';
 require_once 'db.php';
 
 $voorstellingId = (int) ($_GET['voorstelling'] ?? 0);
 
-$stmt = $pdo->prepare(
-    "SELECT v.*, m.title
-     FROM voorstelling v
-     JOIN movies m ON m.movie_id = v.film_id
-     WHERE v.voorstelling_id = ?"
-);
-$stmt->execute([$voorstellingId]);
-$voorstelling = $stmt->fetch(PDO::FETCH_ASSOC); // одна строка или false
+$voorstelling = api_showtime($voorstellingId);
 
-// уже забронированные кресла на этот сеанс
+// Bezette stoelen komen uit onze eigen database
 $stmt = $pdo->prepare("SELECT stoel FROM reservering WHERE voorstelling_id = ?");
 $stmt->execute([$voorstellingId]);
 $bezet = $stmt->fetchAll(PDO::FETCH_COLUMN);
@@ -33,14 +27,14 @@ $bezet = $stmt->fetchAll(PDO::FETCH_COLUMN);
             <h1>Voorstelling niet gevonden</h1>
             <a href="index.php">Kies een film</a>
         <?php else: ?>
-            <h1><?= htmlspecialchars($voorstelling['title']) ?></h1>
+            <h1><?= htmlspecialchars($voorstelling['movie']['title'] ?? '') ?></h1>
             <p>
-                <?= htmlspecialchars(date('d-m-Y', strtotime($voorstelling['datum']))) ?>
-                om <?= htmlspecialchars(substr($voorstelling['begintijd'], 0, 5)) ?>
+                <?= htmlspecialchars($voorstelling['date']) ?>
+                om <?= htmlspecialchars($voorstelling['time']) ?>
             </p>
             <h2>Kies je stoelen</h2>
             <form method="post" action="bevestiging.php">
-                <input type="hidden" name="voorstelling_id" value="<?= (int) $voorstelling['voorstelling_id'] ?>">
+                <input type="hidden" name="voorstelling_id" value="<?= (int) $voorstelling['showtimeId'] ?>">
                 <div class="screen"></div>
                 <div class="chair-grid">
                     <?php foreach ($rows as $row): ?>

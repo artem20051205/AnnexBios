@@ -1,30 +1,10 @@
 <?php
-
-require_once 'db.php';
+require_once 'api.php';
 
 $id = (int) ($_GET['id'] ?? 0);
 
-$stmt = $pdo->prepare("SELECT * FROM movies WHERE movie_id = ?");
-$stmt->execute([$id]);
-
-$movie = $stmt->fetch(PDO::FETCH_ASSOC);
-
-$voorstellingen = [];
-
-if ($movie) {
-
-    $stmt = $pdo->prepare("
-        SELECT *
-        FROM voorstelling
-        WHERE film_id = ?
-        ORDER BY datum, begintijd
-    ");
-
-    $stmt->execute([$id]);
-
-    $voorstellingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
+$movie = api_movie($id);
+$voorstellingen = $movie ? api_showtimes($id) : [];
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +25,8 @@ if ($movie) {
             <div class="flex justify-center md:justify-end">
 
                 <img
-                    src="<?= htmlspecialchars($movie['poster'] ?? 'style/images/Placeholder.png') ?>"
+                    src="<?= htmlspecialchars($movie['posterPath']) ?>"
+                    onerror="this.onerror=null; this.src='style/images/Placeholder.png'"
                     alt="Poster van <?= htmlspecialchars($movie['title']) ?>"
                     class="h-auto w-full max-w-[380px] rounded-lg object-cover shadow-2xl"
                 >
@@ -77,7 +58,7 @@ if ($movie) {
                             Release date:
                         </span>
 
-                        <?= htmlspecialchars($movie['release_date'] ?? '') ?>
+                        <?= htmlspecialchars($movie['releaseDate'] ?? '-') ?>
                     </p>
 
 
@@ -86,7 +67,7 @@ if ($movie) {
                             Rating:
                         </span>
 
-                        <?= htmlspecialchars($movie['imd_rating'] ?? '') ?>
+                        <?= htmlspecialchars($movie['imdRating'] ?? '-') ?>
                     </p>
 
                 </div>
@@ -97,16 +78,20 @@ if ($movie) {
                 </h2>
 
 
+                <?php if (!$voorstellingen): ?>
+                    <p class="text-gray-300">Er zijn nog geen voorstellingen gepland.</p>
+                <?php endif; ?>
+
                 <div class="flex flex-wrap gap-3">
 
                     <?php foreach ($voorstellingen as $v): ?>
 
                         <a
-                            href="bestellen.php?voorstelling=<?= (int) $v['voorstelling_id'] ?>"
+                            href="bestellen.php?voorstelling=<?= (int) $v['showtimeId'] ?>"
                             class="rounded-md bg-[#67294c] px-4 py-3 text-white transition-colors hover:bg-[#813460]"
                         >
 
-                            <?= htmlspecialchars($v['datum'] . ' ' . $v['begintijd']) ?>
+                            <?= htmlspecialchars($v['date'] . ' ' . $v['time']) ?>
 
                         </a>
 

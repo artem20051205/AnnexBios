@@ -1,10 +1,11 @@
 <?php
+require_once 'api.php';
 require_once 'db.php';
 
 $voorstellingId = (int) ($_POST['voorstelling_id'] ?? 0);
 $seats = $_POST['seats'] ?? [];
 
-// проверяем ввод: пользователь может отправить что угодно, а не только наши кресла
+// Invoer controleren: alleen stoelen A1 t/m E8
 $validSeats = [];
 foreach ((array) $seats as $seat) {
     if (is_string($seat) && preg_match('/^[A-E][1-8]$/', $seat)) {
@@ -12,9 +13,10 @@ foreach ((array) $seats as $seat) {
     }
 }
 
-// сохраняем бронь; INSERT IGNORE пропускает кресла, которые кто-то уже занял
+// Alleen boeken als de voorstelling bij onze bioscoop bestaat (API);
+// INSERT IGNORE slaat stoelen over die al bezet zijn
 $geboekt = [];
-if ($voorstellingId > 0 && $validSeats) {
+if ($voorstellingId > 0 && $validSeats && api_showtime($voorstellingId) !== null) {
     $stmt = $pdo->prepare("INSERT IGNORE INTO reservering (voorstelling_id, stoel) VALUES (?, ?)");
     foreach ($validSeats as $seat) {
         $stmt->execute([$voorstellingId, $seat]);

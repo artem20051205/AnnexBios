@@ -72,7 +72,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['hero_image'])) {
     </form>
 
     <h3>Preview:</h3>
-    <img src="<?= htmlspecialchars($heroImage) ?>" alt="Homepage preview" style="max-width: 500px;">
+    <img src="../<?= htmlspecialchars($heroImage) ?>" alt="Homepage preview" style="max-width: 500px;">
+
+    <p><a href="api-test.php">API debug</a></p>
 
     <form method="post" action="index.php" style="margin-top: 20px;">
         <button type="submit">Logout</button>
