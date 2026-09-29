@@ -9,6 +9,11 @@ body {
     margin: 0;
     background: #000 url('images/Background.png') no-repeat center center fixed;
     background-size: cover;
+
+    /* minstens schermhoog, zodat de footer onderaan blijft */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 
@@ -217,7 +222,7 @@ nav a:hover {
     width: 100%;
     max-width: 1280px;
 
-    margin: 0 auto;
+    margin: 0 auto 40px;
 
     padding: 25px 40px 35px;
 
@@ -480,7 +485,8 @@ footer {
 
     padding: 30px;
 
-    margin-top: 30px;
+    /* duwt de footer naar de onderkant van het scherm */
+    margin-top: auto;
 
     font-family: Helvetica, Arial, sans-serif;
 
@@ -712,6 +718,47 @@ footer p {
 }
 
 
+/* KLANTGEGEVENS (NAAM EN E-MAIL) */
+
+.customer {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+    max-width: 360px;
+
+    margin: 40px auto 0;
+
+    text-align: left;
+}
+
+
+.customer input {
+    margin-bottom: 10px;
+
+    padding: 10px 12px;
+
+    background-color: rgb(20, 23, 25);
+
+    color: white;
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    border-radius: 6px;
+
+    font-size: 16px;
+}
+
+
+.customer input:focus {
+    outline: 2px solid #67294c;
+
+    border-color: #67294c;
+}
+
+
 /* MOBIEL STOELEN */
 
 @media (max-width: 700px) {
@@ -753,6 +800,7 @@ footer p {
 
     gap: 40px;
 
+    width: 100%;
     max-width: 1152px;
 
     margin: 0 auto;
@@ -967,6 +1015,7 @@ footer p {
 /* FILMAGENDA PAGINA */
 
 .agenda {
+    width: 100%;
     max-width: 1280px;
 
     margin: 0 auto;

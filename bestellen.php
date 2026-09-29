@@ -59,6 +59,14 @@ $bezet = $stmt->fetchAll(PDO::FETCH_COLUMN);
                     <?php endforeach; ?>
                 </div>
 
+                <div class="customer">
+                    <label for="naam">Naam</label>
+                    <input type="text" id="naam" name="naam" maxlength="100" autocomplete="name" required>
+
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" maxlength="255" autocomplete="email" required>
+                </div>
+
                 <button type="submit" class="confirm">Bevestigen</button>
             </form>
         <?php endif; ?>

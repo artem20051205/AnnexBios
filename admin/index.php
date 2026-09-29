@@ -34,18 +34,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
+    <link rel="icon" type="image/png" href="../style/images/favicon.png">
+    <link rel="stylesheet" href="../style/output.css?v=<?= filemtime(__DIR__ . '/../style/output.css') ?>">
+    <link rel="stylesheet" href="../style/style.css?v=<?= filemtime(__DIR__ . '/../style/style.css') ?>">
 </head>
 <body>
-    <h1>Admin Panel</h1>
+    <?php $base = '../'; include '../includes/header.php'; ?>
 
-    <?php if (!empty($error)): ?>
-        <p><?php echo $error; ?></p>
-    <?php endif; ?>
+    <main class="chairs">
+        <h1>Admin Panel</h1>
 
-    <form method="post">
-        <input type="text" name="gebruikersnaam" placeholder="Gebruikersnaam">
-        <input type="password" name="wachtwoord" placeholder="Wachtwoord">
-        <button type="submit">Inloggen</button>
-    </form>
+        <?php if (!empty($error)): ?>
+            <p><?php echo $error; ?></p>
+        <?php endif; ?>
+
+        <form method="post">
+            <div class="customer">
+                <input type="text" name="gebruikersnaam" placeholder="Gebruikersnaam">
+                <input type="password" name="wachtwoord" placeholder="Wachtwoord">
+            </div>
+            <button type="submit" class="confirm">Inloggen</button>
+        </form>
+    </main>
+
+    <?php include '../includes/footer.php'; ?>
 </body>
 </html>

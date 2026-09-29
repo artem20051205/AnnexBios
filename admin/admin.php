@@ -46,41 +46,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['hero_image'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
+    <link rel="icon" type="image/png" href="../style/images/favicon.png">
+    <link rel="stylesheet" href="../style/output.css?v=<?= filemtime(__DIR__ . '/../style/output.css') ?>">
+    <link rel="stylesheet" href="../style/style.css?v=<?= filemtime(__DIR__ . '/../style/style.css') ?>">
 </head>
 <body>
-    <h1>Welkom in het admin panel</h1>
+    <?php $base = '../'; include '../includes/header.php'; ?>
 
-    <?php if ($error !== ''): ?>
-        <p style="color: red;"><?= htmlspecialchars($error) ?></p>
-    <?php endif; ?>
+    <main class="chairs">
+        <h1>Welkom in het admin panel</h1>
 
-    <?php if ($success !== ''): ?>
-        <p style="color: green;"><?= htmlspecialchars($success) ?></p>
-    <?php endif; ?>
+        <?php if ($error !== ''): ?>
+            <p style="color: red;"><?= htmlspecialchars($error) ?></p>
+        <?php endif; ?>
 
-    <form method="post">
-        <label for="hero_image">Homepage afbeelding:</label><br>
-        <input
-            type="text"
-            id="hero_image"
-            name="hero_image"
-            value="<?= htmlspecialchars($heroImage) ?>"
-            style="width: 420px; margin-top: 8px;"
-        >
-        <br><br>
-        <button type="submit">Opslaan</button>
-    </form>
+        <?php if ($success !== ''): ?>
+            <p style="color: green;"><?= htmlspecialchars($success) ?></p>
+        <?php endif; ?>
 
-    <h3>Preview:</h3>
-    <img src="../<?= htmlspecialchars($heroImage) ?>" alt="Homepage preview" style="max-width: 500px;">
+        <form method="post">
+            <div class="customer">
+                <label for="hero_image">Homepage afbeelding:</label>
+                <input
+                    type="text"
+                    id="hero_image"
+                    name="hero_image"
+                    value="<?= htmlspecialchars($heroImage) ?>"
+                >
+            </div>
+            <button type="submit" class="confirm">Opslaan</button>
+        </form>
 
-    <p><a href="api-test.php">API debug</a></p>
-    <a href="reservering.php">reservering</a>
+        <h2>Preview:</h2>
+        <img src="../<?= htmlspecialchars($heroImage) ?>" alt="Homepage preview" style="max-width: 500px; margin: 10px auto;">
 
-    <form method="post" action="index.php" style="margin-top: 20px;">
-        <button type="submit">Logout</button>
-    </form>
-    
-    
+        <a class="details-button" href="reservering.php">Reserveringen</a>
+        <a class="details-button" href="api-test.php">API debug</a>
+
+        <form method="post" action="logout.php">
+            <button type="submit" class="details-button">Logout</button>
+        </form>
+    </main>
+
+    <?php include '../includes/footer.php'; ?>
 </body>
 </html>

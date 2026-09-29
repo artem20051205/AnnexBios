@@ -36,12 +36,28 @@ if (is_array($json)) {
     $body = json_encode($json, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 }
 ?>
-<title>API debug</title>
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API debug</title>
+    <link rel="icon" type="image/png" href="../style/images/favicon.png">
+    <link rel="stylesheet" href="../style/output.css?v=<?= filemtime(__DIR__ . '/../style/output.css') ?>">
+    <link rel="stylesheet" href="../style/style.css?v=<?= filemtime(__DIR__ . '/../style/style.css') ?>">
+</head>
+<body>
+<?php $base = '../'; include '../includes/header.php'; ?>
+
+<main class="chairs">
+<h1>API debug</h1>
 <form>
-    <input name="path" value="<?= htmlspecialchars($path) ?>" size="60">
-    <button>Versturen</button>
+    <div class="customer">
+        <input name="path" value="<?= htmlspecialchars($path) ?>" size="60">
+    </div>
+    <button class="details-button">Versturen</button>
 </form>
-<pre>
+<pre style="text-align: left; overflow: auto;">
 GET <?= htmlspecialchars(API_URL . $path) ?>
 
 Status: <?= $status ?> <?= htmlspecialchars($error) ?>
@@ -49,3 +65,9 @@ Status: <?= $status ?> <?= htmlspecialchars($error) ?>
 
 <?= htmlspecialchars($body) ?>
 </pre>
+<a class="details-button" href="admin.php">Terug</a>
+</main>
+
+<?php include '../includes/footer.php'; ?>
+</body>
+</html>

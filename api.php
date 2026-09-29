@@ -5,40 +5,51 @@ const API_URL = 'https://annex.pepijntw.com/api/v1';
 const POSTER_PLACEHOLDER = 'style/images/Placeholder.png';
 
 // GET-verzoek naar de API. Geeft "data" terug, of null als er iets misgaat.
+// De API geeft maximaal 15 resultaten per pagina, daarom halen we alle pagina's op.
 function api_get(string $path): ?array
 {
     $configFile = __DIR__ . '/api-config.php';
     $token = file_exists($configFile) ? trim(require $configFile) : '';
     if ($token === '') {
-        error_log('AnnexBios API: geen token in api-config.php');
+        error_log('AnnexBios API: geen token. Kopieer api-config.example.php naar api-config.php en zet het token erin.');
         return null;
     }
 
-    $ch = curl_init(API_URL . $path);
-    curl_setopt_array($ch, [
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_TIMEOUT        => 5,
-        CURLOPT_HTTPHEADER     => [
-            'Authorization: Bearer ' . $token,
-            'Accept: application/json',
-        ],
-    ]);
+    $separator = str_contains($path, '?') ? '&' : '?';
+    $data = [];
+    $page = 1;
 
-    $body   = curl_exec($ch);
-    $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    do {
+        $ch = curl_init(API_URL . $path . $separator . 'page=' . $page);
+        curl_setopt_array($ch, [
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT        => 5,
+            CURLOPT_HTTPHEADER     => [
+                'Authorization: Bearer ' . $token,
+                'Accept: application/json',
+            ],
+        ]);
 
-    if ($body === false || $status !== 200) {
-        error_log("AnnexBios API: $path -> HTTP $status " . curl_error($ch));
-        return null;
-    }
+        $body   = curl_exec($ch);
+        $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-    $json = json_decode($body, true);
-    if (!is_array($json)) {
-        error_log("AnnexBios API: $path -> geen geldige JSON");
-        return null;
-    }
+        if ($body === false || $status !== 200) {
+            error_log("AnnexBios API: $path (pagina $page) -> HTTP $status " . curl_error($ch));
+            return null;
+        }
 
-    return $json['data'] ?? $json;
+        $json = json_decode($body, true);
+        if (!is_array($json)) {
+            error_log("AnnexBios API: $path (pagina $page) -> geen geldige JSON");
+            return null;
+        }
+
+        $data = array_merge($data, $json['data'] ?? []);
+        $lastPage = (int) ($json['meta']['last_page'] ?? 1);
+        $page++;
+    } while ($page <= $lastPage);
+
+    return $data;
 }
 
 function api_format_movie(array $movie): array

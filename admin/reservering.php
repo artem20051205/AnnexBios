@@ -19,9 +19,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_reservering_id
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Reserveringen</title>
+    <link rel="icon" type="image/png" href="../style/images/favicon.png">
+    <link rel="stylesheet" href="../style/output.css?v=<?= filemtime(__DIR__ . '/../style/output.css') ?>">
+    <link rel="stylesheet" href="../style/style.css?v=<?= filemtime(__DIR__ . '/../style/style.css') ?>">
 </head>
 <body>
+<?php $base = '../'; include '../includes/header.php'; ?>
+
+<main class="chairs">
+<h1>Reserveringen</h1>
+<a class="details-button" href="admin.php">Terug</a>
 <?php
 $reserveringStmt = $pdo->query("SELECT * FROM reservering");    
 foreach ($reserveringStmt as $reservering) {
@@ -29,10 +37,12 @@ foreach ($reserveringStmt as $reservering) {
     echo "<p>Reservering ID: " . htmlspecialchars($reservering['reservering_id']) . "</p>";
     echo "<p>Stoel: " . htmlspecialchars($reservering['stoel']) . "</p>";
     echo "<p>Voorstelling ID: " . htmlspecialchars($reservering['voorstelling_id']) . "</p>";
+    echo "<p>Naam: " . htmlspecialchars($reservering['naam']) . "</p>";
+    echo "<p>E-mail: " . htmlspecialchars($reservering['email']) . "</p>";
     ?>
     <form method="post">
         <input type="hidden" name="delete_reservering_id" value="<?= (int) $reservering['reservering_id'] ?>">
-        <button type="submit">Verwijderen</button>
+        <button type="submit" class="details-button">Verwijderen</button>
     </form>
 <?php
 
@@ -44,11 +54,9 @@ foreach ($reserveringStmt as $reservering) {
 
 
 
-?><a href="add_reservering.php">ADD Reservering</a>
+?><a class="details-button" href="add_reservering.php">Reservering toevoegen</a>
+</main>
 
-
-
-
- 
+<?php include '../includes/footer.php'; ?>
 </body>
 </html>
