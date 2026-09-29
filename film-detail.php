@@ -19,42 +19,41 @@ $voorstellingen = $movie ? api_showtimes($id) : [];
 
     <?php if ($movie): ?>
 
-        <main class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-6 py-12 text-white md:grid-cols-[minmax(280px,380px)_minmax(0,1fr)] md:gap-16 md:px-10">
+        <main class="detail">
 
             <!-- POSTER -->
-            <div class="flex justify-center md:justify-end">
+            <div class="detail-poster">
 
                 <img
                     src="<?= htmlspecialchars($movie['posterPath']) ?>"
                     onerror="this.onerror=null; this.src='style/images/Placeholder.png'"
                     alt="Poster van <?= htmlspecialchars($movie['title']) ?>"
-                    class="h-auto w-full max-w-[380px] rounded-lg object-cover shadow-2xl"
                 >
 
             </div>
 
 
             <!-- FILM INFORMATIE -->
-            <section class="max-w-2xl md:mt-4">
+            <section class="detail-info">
 
-                <h1 class="mb-5 text-4xl font-bold text-white md:text-5xl">
+                <h1 class="detail-title">
 
                     <?= htmlspecialchars($movie['title']) ?>
 
                 </h1>
 
 
-                <p class="mb-6 text-lg leading-relaxed text-gray-200">
+                <p class="detail-description">
 
                     <?= htmlspecialchars($movie['description'] ?? '') ?>
 
                 </p>
 
 
-                <div class="mb-8 space-y-2 text-lg text-gray-300">
+                <div class="detail-meta">
 
                     <p>
-                        <span class="font-semibold text-white">
+                        <span>
                             Release date:
                         </span>
 
@@ -63,7 +62,7 @@ $voorstellingen = $movie ? api_showtimes($id) : [];
 
 
                     <p>
-                        <span class="font-semibold text-white">
+                        <span>
                             Rating:
                         </span>
 
@@ -73,23 +72,20 @@ $voorstellingen = $movie ? api_showtimes($id) : [];
                 </div>
 
 
-                <h2 class="mb-4 text-2xl font-semibold text-white">
+                <h2 class="detail-subtitle">
                     Voorstellingen
                 </h2>
 
 
                 <?php if (!$voorstellingen): ?>
-                    <p class="text-gray-300">Er zijn nog geen voorstellingen gepland.</p>
+                    <p class="detail-empty">Er zijn nog geen voorstellingen gepland.</p>
                 <?php endif; ?>
 
-                <div class="flex flex-wrap gap-3">
+                <div class="showtimes">
 
                     <?php foreach ($voorstellingen as $v): ?>
 
-                        <a
-                            href="bestellen.php?voorstelling=<?= (int) $v['showtimeId'] ?>"
-                            class="rounded-md bg-[#67294c] px-4 py-3 text-white transition-colors hover:bg-[#813460]"
-                        >
+                        <a href="bestellen.php?voorstelling=<?= (int) $v['showtimeId'] ?>">
 
                             <?= htmlspecialchars($v['date'] . ' ' . $v['time']) ?>
 
@@ -106,9 +102,9 @@ $voorstellingen = $movie ? api_showtimes($id) : [];
 
     <?php else: ?>
 
-        <main class="px-6 py-12 text-center text-white">
+        <main class="detail-unknown">
 
-            <h1 class="text-3xl font-bold">
+            <h1>
                 Unknown Film
             </h1>
 
