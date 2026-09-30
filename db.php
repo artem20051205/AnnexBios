@@ -14,6 +14,7 @@ try {
 
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    // settings tabel aanmaken als die nog niet bestaat
     $pdo->exec("
         CREATE TABLE IF NOT EXISTS site_settings (
             setting_name VARCHAR(100) PRIMARY KEY,

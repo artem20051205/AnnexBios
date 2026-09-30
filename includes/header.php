@@ -1,5 +1,5 @@
 <?php
-// Pagina's in de map admin/ zetten $base = '../', zodat de links ook daar kloppen
+// admin pagina's zetten $base op '../', anders kloppen de links niet
 $base = $base ?? '';
 ?>
 <header class="flex min-h-[120px] flex-col items-start gap-4 rounded-[10px] bg-[rgb(20,23,25)] px-6 py-5 sm:flex-row sm:items-center sm:px-10">

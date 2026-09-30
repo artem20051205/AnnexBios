@@ -21,7 +21,7 @@ $voorstellingen = $movie ? api_showtimes($id) : [];
 
         <main class="detail">
 
-            <!-- POSTER -->
+            <!-- poster -->
             <div class="detail-poster">
 
                 <img
@@ -33,7 +33,7 @@ $voorstellingen = $movie ? api_showtimes($id) : [];
             </div>
 
 
-            <!-- FILM INFORMATIE -->
+            <!-- info over de film -->
             <section class="detail-info">
 
                 <h1 class="detail-title">

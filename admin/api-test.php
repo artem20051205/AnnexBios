@@ -1,6 +1,6 @@
 <?php
-// Debugpagina voor admins: laat zien wat de API teruggeeft. Staat in .gitignore.
-// Voorbeelden: /movies  /movies?movieId[eq]=1  /showtimes  /showtimes?showtimeId[eq]=3
+// debug pagina voor admin, laat zien wat de api teruggeeft
+// bv. /movies  /movies?movieId[eq]=1  /showtimes  /showtimes?showtimeId[eq]=3
 require_once '../api.php';
 session_start();
 
@@ -27,6 +27,7 @@ $body   = (string) curl_exec($ch);
 $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 $error  = curl_error($ch);
 
+// token niet laten zien op de pagina
 if ($token !== '') {
     $body = str_replace($token, '[token]', $body);
 }

@@ -4,7 +4,7 @@ require_once 'db.php';
 
 $movies = api_movies();
 
-// Homepage-afbeelding: instelling uit het adminpanel (database)
+// hero afbeelding uit de database (kan je aanpassen in admin)
 $heroImage = 'style/images/dune.png';
 $heroStmt = $pdo->prepare("SELECT setting_value FROM site_settings WHERE setting_name = :name LIMIT 1");
 $heroStmt->execute([':name' => 'hero_image']);
@@ -25,7 +25,7 @@ if ($heroRow && !empty($heroRow['setting_value'])) {
     <?php include 'includes/header.php'; ?>
 
 
-    <!-- DUNE AFBEELDING -->
+    <!-- hero afbeelding -->
     <div class="dunepic">
 
         <img
@@ -34,7 +34,6 @@ if ($heroRow && !empty($heroRow['setting_value'])) {
             class="dune"
         >
 
-        <!-- TEKST OP AFBEELDING -->
         <div class="film-intro">
 
             <h2>Welkom bij AnnexBios Bilthoven</h2>
@@ -50,7 +49,7 @@ if ($heroRow && !empty($heroRow['setting_value'])) {
     </div>
 
 
-    <!-- FILMS -->
+    <!-- films slider -->
     <div class="arraybackground">
 
         <h2 class="movies-title">
@@ -58,10 +57,8 @@ if ($heroRow && !empty($heroRow['setting_value'])) {
         </h2>
 
 
-        <!-- SLIDER -->
         <div class="movie-slider">
 
-            <!-- LINKER PIJL -->
             <button
                 class="slider-arrow arrow-left"
                 onclick="scrollMovies(-1)"
@@ -70,7 +67,6 @@ if ($heroRow && !empty($heroRow['setting_value'])) {
             </button>
 
 
-            <!-- FILMS -->
             <div class="movies-scroll" id="moviesScroll">
 
                 <?php foreach ($movies as $movie): ?>
@@ -113,7 +109,6 @@ if ($heroRow && !empty($heroRow['setting_value'])) {
             </div>
 
 
-            <!-- RECHTER PIJL -->
             <button
                 class="slider-arrow arrow-right"
                 onclick="scrollMovies(1)"
@@ -129,9 +124,9 @@ if ($heroRow && !empty($heroRow['setting_value'])) {
     <?php include 'includes/footer.php'; ?>
 
 
-    <!-- SLIDER JAVASCRIPT -->
     <script>
 
+        // -1 = links, 1 = rechts
         function scrollMovies(direction) {
 
             const movies = document.getElementById("moviesScroll");

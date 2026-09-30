@@ -1,11 +1,10 @@
 <?php
-// Films en voorstellingen komen uit de API van het hoofdkantoor.
+// films en tijden komen uit de api van het hoofdkantoor
 
 const API_URL = 'https://annex.pepijntw.com/api/v1';
 const POSTER_PLACEHOLDER = 'style/images/Placeholder.png';
 
-// GET-verzoek naar de API. Geeft "data" terug, of null als er iets misgaat.
-// De API geeft maximaal 15 resultaten per pagina, daarom halen we alle pagina's op.
+// haalt alle pagina's op uit de api, geeft null als er iets fout gaat
 function api_get(string $path): ?array
 {
     $configFile = __DIR__ . '/api-config.php';
@@ -61,7 +60,7 @@ function api_format_movie(array $movie): array
     return $movie;
 }
 
-// startTime is in UTC; we tonen de Nederlandse tijd
+// tijd uit de api is in UTC, omzetten naar Nederlandse tijd
 function api_format_showtime(array $showtime): array
 {
     $start = new DateTime($showtime['startTime']);
@@ -85,7 +84,7 @@ function api_movie(int $id): ?array
     return empty($movies[0]) ? null : api_format_movie($movies[0]);
 }
 
-// Alleen toekomstige voorstellingen van onze bioscoop, gesorteerd op tijd
+// alleen voorstellingen die nog moeten komen, gesorteerd op tijd
 function api_showtimes(int $movieId): array
 {
     $showtimes = api_get("/showtimes?movieId[eq]=$movieId") ?? [];
@@ -95,7 +94,6 @@ function api_showtimes(int $movieId): array
     return array_map('api_format_showtime', $showtimes);
 }
 
-// Geeft null als de voorstelling niet bij onze bioscoop hoort
 function api_showtime(int $id): ?array
 {
     $showtimes = api_get("/showtimes?showtimeId[eq]=$id");

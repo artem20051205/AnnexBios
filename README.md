@@ -1,12 +1,1 @@
 # AnnexBios
-
-Website van AnnexBios Bilthoven. Films en voorstellingen komen uit de API van het hoofdkantoor,
-reserveringen staan in onze eigen database.
-
-## Installeren
-
-1. **API-token:** kopieer `api-config.example.php` naar `api-config.php` en zet het token erin.
-   `api-config.php` staat in `.gitignore`, dus het token komt niet op GitHub.
-   Zonder token laat de site geen films zien (de fout staat in de PHP error log).
-2. **Database:** de instellingen staan in `db.php`. Voer `database/reservering.sql` uit.
-   Had je de tabel `reservering` al? Voer dan `database/migratie-klantgegevens.sql` uit.

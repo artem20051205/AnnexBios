@@ -1,5 +1,5 @@
 <?php
-// Uitloggen: sessie leegmaken en terug naar het inlogscherm
+// sessie leegmaken en terug naar login
 session_start();
 
 $_SESSION = [];

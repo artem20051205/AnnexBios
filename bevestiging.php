@@ -7,7 +7,7 @@ $seats = $_POST['seats'] ?? [];
 $naam = is_string($_POST['naam'] ?? null) ? trim($_POST['naam']) : '';
 $email = is_string($_POST['email'] ?? null) ? trim($_POST['email']) : '';
 
-// Invoer controleren: alleen stoelen A1 t/m E8
+// check of de stoelen kloppen (A1 t/m E8)
 $validSeats = [];
 foreach ((array) $seats as $seat) {
     if (is_string($seat) && preg_match('/^[A-E][1-8]$/', $seat)) {
@@ -15,12 +15,10 @@ foreach ((array) $seats as $seat) {
     }
 }
 
-// Naam en e-mail zijn verplicht, zodat de medewerker weet van wie de reservering is
 $klantOk = $naam !== '' && mb_strlen($naam) <= 100
     && strlen($email) <= 255 && filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
 
-// Alleen boeken als de voorstelling bij onze bioscoop bestaat (API);
-// INSERT IGNORE slaat stoelen over die al bezet zijn
+// stoel al bezet? dan slaat INSERT IGNORE hem over
 $geboekt = [];
 $bezet = [];
 if ($klantOk && $voorstellingId > 0 && $validSeats && api_showtime($voorstellingId) !== null) {

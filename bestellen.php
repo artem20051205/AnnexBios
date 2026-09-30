@@ -9,7 +9,7 @@ $voorstellingId = (int) ($_GET['voorstelling'] ?? 0);
 
 $voorstelling = api_showtime($voorstellingId);
 
-// Bezette stoelen komen uit onze eigen database
+// stoelen die al bezet zijn uit de database halen
 $stmt = $pdo->prepare("SELECT stoel FROM reservering WHERE voorstelling_id = ?");
 $stmt->execute([$voorstellingId]);
 $bezet = $stmt->fetchAll(PDO::FETCH_COLUMN);
