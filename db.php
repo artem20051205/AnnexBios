@@ -5,6 +5,11 @@ $dbname = 'annexbios';
 $username = 'root';
 $password = 'root';
 
+// op de server staat db-config.php met de gegevens van de hosting
+if (file_exists(__DIR__ . '/db-config.php')) {
+    require __DIR__ . '/db-config.php';
+}
+
 try {
     $pdo = new PDO(
         "mysql:host=$host;dbname=$dbname;charset=utf8mb4",

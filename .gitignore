@@ -1,2 +1,3 @@
-# api token, niet pushen!
+# api token en database wachtwoord, niet pushen!
 api-config.php
+db-config.php
