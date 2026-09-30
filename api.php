@@ -1,8 +1,12 @@
 <?php
-// films en tijden komen uit de api van het hoofdkantoor
+// films komen uit de api van het hoofdkantoor
 
 const API_URL = 'https://annex.pepijntw.com/api/v1';
 const POSTER_PLACEHOLDER = 'style/images/Placeholder.png';
+
+// de api heeft nog geen voorstellingen, dus elke film draait op deze tijden
+const SHOW_TIMES = ['14:00', '17:30', '20:30'];
+const SHOW_DAYS = 5;
 
 // haalt alle pagina's op uit de api, geeft null als er iets fout gaat
 function api_get(string $path): ?array
@@ -60,18 +64,6 @@ function api_format_movie(array $movie): array
     return $movie;
 }
 
-// tijd uit de api is in UTC, omzetten naar Nederlandse tijd
-function api_format_showtime(array $showtime): array
-{
-    $start = new DateTime($showtime['startTime']);
-    $start->setTimezone(new DateTimeZone('Europe/Amsterdam'));
-
-    $showtime['date'] = $start->format('d-m-Y');
-    $showtime['time'] = $start->format('H:i');
-
-    return $showtime;
-}
-
 function api_movies(): array
 {
     return array_map('api_format_movie', api_get('/movies') ?? []);
@@ -84,19 +76,45 @@ function api_movie(int $id): ?array
     return empty($movies[0]) ? null : api_format_movie($movies[0]);
 }
 
-// alleen voorstellingen die nog moeten komen, gesorteerd op tijd
+// id = movieId + mmdd + nr van de tijd, bv. 1110022 = film 11 op 2 okt om 20:30
 function api_showtimes(int $movieId): array
 {
-    $showtimes = api_get("/showtimes?movieId[eq]=$movieId") ?? [];
-    $showtimes = array_filter($showtimes, fn($s) => strtotime($s['startTime']) > time());
-    usort($showtimes, fn($a, $b) => strcmp($a['startTime'], $b['startTime']));
+    $tz = new DateTimeZone('Europe/Amsterdam');
+    $showtimes = [];
 
-    return array_map('api_format_showtime', $showtimes);
+    for ($day = 0; $day < SHOW_DAYS; $day++) {
+        foreach (SHOW_TIMES as $nr => $time) {
+            $start = new DateTime("today +$day day $time", $tz);
+            if ($start->getTimestamp() <= time()) {
+                continue;
+            }  
+
+            $showtimes[] = [
+                'showtimeId' => (int) ($movieId . $start->format('md') . $nr),
+                'movieId'    => $movieId,
+                'date'       => $start->format('d-m-Y'),
+                'time'       => $start->format('H:i'),
+            ];
+        }
+    }
+
+    return $showtimes;
 }
 
+// laatste 5 cijfers van de id zijn datum + nr, de rest is de movieId
 function api_showtime(int $id): ?array
 {
-    $showtimes = api_get("/showtimes?showtimeId[eq]=$id");
+    $movie = api_movie(intdiv($id, 100000));
+    if (!$movie) {
+        return null;
+    }
 
-    return empty($showtimes[0]) ? null : api_format_showtime($showtimes[0]);
+    foreach (api_showtimes($movie['movieId']) as $showtime) {
+        if ($showtime['showtimeId'] === $id) {
+            $showtime['movie'] = $movie;
+            return $showtime;
+        }
+    }
+
+    return null;
 }
