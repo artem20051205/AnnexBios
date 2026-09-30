@@ -2,6 +2,7 @@
 require_once '../db.php';
 session_start();
 
+// niet ingelogd? dan terug naar de login
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
     header('Location: index.php');
     exit;
@@ -10,6 +11,7 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 $error = '';
 $success = '';
 
+// huidige hero afbeelding ophalen, dune.png als er nog niks is
 $heroImage = 'style/images/dune.png';
 $heroStmt = $pdo->prepare("SELECT setting_value FROM site_settings WHERE setting_name = :name LIMIT 1");
 $heroStmt->execute([':name' => 'hero_image']);
@@ -19,12 +21,14 @@ if ($heroRow && !empty($heroRow['setting_value'])) {
     $heroImage = $heroRow['setting_value'];
 }
 
+// nieuwe afbeelding opslaan
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['hero_image'])) {
     $newHeroImage = trim($_POST['hero_image']);
 
     if ($newHeroImage === '') {
         $error = 'Vul een afbeelding pad of URL in.';
     } else {
+        // bestaat hero_image al, dan wordt hij aangepast, anders nieuw toegevoegd
         $update = $pdo->prepare(
             "INSERT INTO site_settings (setting_name, setting_value) VALUES (:name, :value)
              ON DUPLICATE KEY UPDATE setting_value = VALUES(setting_value)"
@@ -78,6 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['hero_image'])) {
         </form>
 
         <h2>Preview:</h2>
+        <!-- ../ ervoor omdat we in de admin map zitten -->
         <img src="../<?= htmlspecialchars($heroImage) ?>" alt="Homepage preview" style="max-width: 500px; margin: 10px auto;">
 
         <a class="details-button" href="reservering.php">Reserveringen</a>

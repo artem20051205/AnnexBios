@@ -4,6 +4,7 @@
         © 2026 AnnexBios Bilthoven
     </p>
 
+    <!-- $base komt uit header.php, zodat de links ook vanuit admin werken -->
     <div class="flex flex-wrap justify-center gap-10">
         <a
             href="<?= $base ?? '' ?>index.php"

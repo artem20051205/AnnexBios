@@ -2,14 +2,17 @@
 require_once '../db.php';
 session_start();
 
+// niet ingelogd? dan terug naar de login
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
     header('Location: index.php');
     exit;
 }
 
+// reservering verwijderen als er op de knop is gedrukt
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_reservering_id'])) {
     $deleteStmt = $pdo->prepare('DELETE FROM reservering WHERE reservering_id = ?');
     $deleteStmt->execute([$_POST['delete_reservering_id']]);
+    // redirect, anders stuurt een refresh het formulier nog een keer
     header('Location: reservering.php');
     exit;
 }
@@ -31,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_reservering_id
 <h1>Reserveringen</h1>
 <a class="details-button" href="admin.php">Terug</a>
 <?php
+// alle reserveringen, elk met een knop om te verwijderen
 $reserveringStmt = $pdo->query("SELECT * FROM reservering");    
 foreach ($reserveringStmt as $reservering) {
     echo "<div>";

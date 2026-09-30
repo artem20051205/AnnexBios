@@ -1,6 +1,7 @@
 <?php
 require_once 'api.php';
 
+// alle films uit de api
 $films = api_movies();
 ?>
 <!DOCTYPE html>
@@ -23,6 +24,7 @@ $films = api_movies();
     </div>
 
     <?php if ($films): ?>
+        <!-- elke film als een kaart -->
         <div class="agenda-grid">
             <?php foreach ($films as $film): ?>
                 <article class="film-card">
@@ -62,6 +64,7 @@ $films = api_movies();
             <?php endforeach; ?>
         </div>
     <?php else: ?>
+        <!-- de api geeft niks terug, bv. geen token of de api is down -->
         <p class="agenda-empty">
             Er zijn momenteel geen films beschikbaar.
         </p>

@@ -1,5 +1,6 @@
 <?php
 require_once '../db.php';
+// sessie nodig om te onthouden dat je bent ingelogd
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -9,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($gebruikersnaam === '' || $wachtwoord === '') {
         $error = 'Vul alle velden in.';
     } else {
+        // admin zoeken op gebruikersnaam
         $stmt = $pdo->prepare('SELECT * FROM admin_log WHERE gebruikersnaam = :gebruikersnaam LIMIT 1');
         $stmt->execute([
             ':gebruikersnaam' => $gebruikersnaam,
@@ -16,7 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        // wachtwoord kan gewoon of als hash in de database staan
         if ($user && ($wachtwoord === $user['wachtwoord'] || password_verify($wachtwoord, $user['wachtwoord']))) {
+            // hier kijken de andere admin pagina's naar
             $_SESSION['admin_logged_in'] = true;
             $_SESSION['gebruikersnaam'] = $user['gebruikersnaam'];
 

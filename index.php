@@ -2,9 +2,11 @@
 require_once 'api.php';
 require_once 'db.php';
 
+// alle films voor de slider
 $movies = api_movies();
 
 // hero afbeelding uit de database (kan je aanpassen in admin)
+// staat er niks in de database, dan blijft het dune.png
 $heroImage = 'style/images/dune.png';
 $heroStmt = $pdo->prepare("SELECT setting_value FROM site_settings WHERE setting_name = :name LIMIT 1");
 $heroStmt->execute([':name' => 'hero_image']);
@@ -73,6 +75,7 @@ if ($heroRow && !empty($heroRow['setting_value'])) {
 
                     <div class="movie-item">
 
+                        <?php // laadt de poster niet, dan de placeholder (onerror=null zodat het geen loop wordt) ?>
                         <img
                             class="movie-poster"
                             src="<?= htmlspecialchars($movie['posterPath']) ?>"
@@ -131,6 +134,7 @@ if ($heroRow && !empty($heroRow['setting_value'])) {
 
             const movies = document.getElementById("moviesScroll");
 
+            // 500px opzij schuiven, smooth zodat het mooi gaat
             movies.scrollBy({
                 left: direction * 500,
                 behavior: "smooth"

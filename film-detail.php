@@ -1,9 +1,11 @@
 <?php
 require_once 'api.php';
 
+// id van de film uit de url
 $id = (int) ($_GET['id'] ?? 0);
 
 $movie = api_movie($id);
+// alleen tijden maken als de film echt bestaat
 $voorstellingen = $movie ? api_showtimes($id) : [];
 ?>
 
@@ -21,7 +23,7 @@ $voorstellingen = $movie ? api_showtimes($id) : [];
 
         <main class="detail">
 
-            <!-- poster -->
+            <!-- poster, laadt hij niet dan komt de placeholder -->
             <div class="detail-poster">
 
                 <img
@@ -81,6 +83,7 @@ $voorstellingen = $movie ? api_showtimes($id) : [];
                     <p class="detail-empty">Er zijn nog geen voorstellingen gepland.</p>
                 <?php endif; ?>
 
+                <!-- elke tijd is een link naar bestellen.php met de id van de voorstelling -->
                 <div class="showtimes">
 
                     <?php foreach ($voorstellingen as $v): ?>
@@ -102,6 +105,7 @@ $voorstellingen = $movie ? api_showtimes($id) : [];
 
     <?php else: ?>
 
+        <!-- geen film met dit id -->
         <main class="detail-unknown">
 
             <h1>

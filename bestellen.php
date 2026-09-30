@@ -1,12 +1,15 @@
 <?php
+// de zaal: 5 rijen (A t/m E) met elk 8 stoelen
 $rows = ['A', 'B', 'C', 'D', 'E'];
 $seatsPerRow = 8;
 
 require_once 'api.php';
 require_once 'db.php';
 
+// (int) zodat er alleen een getal in kan
 $voorstellingId = (int) ($_GET['voorstelling'] ?? 0);
 
+// null als de voorstelling niet bestaat of al begonnen is
 $voorstelling = api_showtime($voorstellingId);
 
 // stoelen die al bezet zijn uit de database halen
@@ -34,18 +37,21 @@ $bezet = $stmt->fetchAll(PDO::FETCH_COLUMN);
             </p>
             <h2>Kies je stoelen</h2>
             <form method="post" action="bevestiging.php">
+                <!-- welke voorstelling, gaat mee naar bevestiging.php -->
                 <input type="hidden" name="voorstelling_id" value="<?= (int) $voorstelling['showtimeId'] ?>">
                 <div class="screen"></div>
                 <div class="chair-grid">
                     <?php foreach ($rows as $row): ?>
                         <?php for ($seat = 1; $seat <= $seatsPerRow; $seat++): ?>
-                            <?php $code = $row . $seat; ?>
+                            <?php $code = $row . $seat; // bv. A1 ?>
                             <?php if (in_array($code, $bezet)): ?>
+                                <?php // bezet: grijze stoel, kan je niet aanklikken ?>
                                 <span class="seat seat-body seat-taken">
                                     <img src="style/images/chairgray.png" alt="Bezet">
                                     <?php echo $code; ?>
                                 </span>
                             <?php else: ?>
+                                <?php // vrij: checkbox, als je hem aanvinkt laat de css de witte stoel zien ?>
                                 <label class="seat">
                                     <input type="checkbox" name="seats[]" value="<?php echo $code; ?>">
                                     <span class="seat-body">

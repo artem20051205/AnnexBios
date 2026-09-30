@@ -1,12 +1,15 @@
 <?php
 
+// database in docker (lokaal)
 $host = 'db';
 $dbname = 'annexbios';
 $username = 'root';
 $password = 'root';
 
 // op de server staat db-config.php met de gegevens van de hosting
-if (file_exists(__DIR__ . '/db-config.php')) {
+// op localhost slaan we dat bestand over, anders werkt docker niet meer
+$isLokaal = in_array($_SERVER['SERVER_NAME'] ?? '', ['localhost', '127.0.0.1'], true);
+if (!$isLokaal && file_exists(__DIR__ . '/db-config.php')) {
     require __DIR__ . '/db-config.php';
 }
 
@@ -17,6 +20,7 @@ try {
         $password
     );
 
+    // bij een fout gooit pdo een exception, die vangen we onderaan op
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // settings tabel aanmaken als die nog niet bestaat
@@ -27,6 +31,7 @@ try {
         )
     ");
 
+    // nog geen hero afbeelding? dan dune.png als standaard opslaan
     $stmt = $pdo->prepare("SELECT COUNT(*) FROM site_settings WHERE setting_name = :name");
     $stmt->execute([':name' => 'hero_image']);
 

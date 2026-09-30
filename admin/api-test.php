@@ -4,19 +4,23 @@
 require_once '../api.php';
 session_start();
 
+// niet ingelogd? dan terug naar de login
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
     header('Location: index.php');
     exit;
 }
 
+// pad uit de url, alleen normale tekens mogen, anders gewoon /movies
 $path = '/' . ltrim(trim($_GET['path'] ?? 'movies'), '/');
 if (!preg_match('#^/[\w/.\-?=&\[\]%]*$#', $path)) {
     $path = '/movies';
 }
 
+// zelfde token als in api.php
 $configFile = __DIR__ . '/../api-config.php';
 $token = file_exists($configFile) ? trim(require $configFile) : '';
 
+// maar 1 pagina ophalen, hier willen we het echte antwoord van de api zien
 $ch = curl_init(API_URL . $path);
 curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,
@@ -32,6 +36,7 @@ if ($token !== '') {
     $body = str_replace($token, '[token]', $body);
 }
 
+// json mooi maken met enters en spaties
 $json = json_decode($body, true);
 if (is_array($json)) {
     $body = json_encode($json, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);

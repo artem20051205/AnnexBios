@@ -2,11 +2,13 @@
 require_once '../db.php';
 session_start();
 
+// niet ingelogd? dan terug naar de login
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
     header('Location: index.php');
     exit;
 }
 
+// nieuwe reservering opslaan, naam en email blijven leeg
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_reservering'])) {
     $addStmt = $pdo->prepare('INSERT INTO reservering (voorstelling_id, stoel) VALUES (?, ?)');
     $addStmt->execute([$_POST['voorstelling_id'], $_POST['stoel']]);
@@ -31,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_reservering'])) {
  <h1>Reservering toevoegen</h1>
  <form action="add_reservering.php" method="post">
     <div class="customer">
+     <!-- de id staat in de url van bestellen.php, bv. ?voorstelling=1110022 -->
      <label for="voorstelling_id">Voorstelling ID:</label>
     <input type="number" id="voorstelling_id" name="voorstelling_id" required>
      <label for="stoel">Stoelnummer:</label>
